@@ -1,6 +1,6 @@
 #ifndef HASH_CPP
 #define HASH_CPP
 
-#include "hash.hpp"
+#include "Hash.hpp"
 
 #endif

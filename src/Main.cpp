@@ -1,4 +1,4 @@
-#include "Hash/hash.hpp"
+#include "Hash/Hash.hpp"
 
 int main() {
 
