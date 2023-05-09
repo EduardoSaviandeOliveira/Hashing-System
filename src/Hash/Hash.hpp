@@ -4,34 +4,57 @@
 #include <iostream>
 #include <string>
 
-struct Autor {
-    int id;
-    std::string name;
+class Item {
+    public:
+        static int id;
+        std::string name;
+    Item(std::string name) {
+        this->id++;
+        this->name = name;
+    }
+};
+
+class User: public Item {
+    public:
+        // std::vector<Book> books;
+        // std::vector<Magazine> magazines;
+};
+
+class Autor: public Item {
+    public:
+        // std::vector<Book> books;
+        // std::vector<Magazine> magazines;
 };
 
 
-struct Publisher {
-    int id;
-    std::string name;
+struct Publisher: public Item {
+    // std::vector<Book> books;
+    // std::vector<Magazine> magazines;
 };
 
-struct Book {
-    std::string name;
-    int id;
-    Autor autor;
-    Publisher publisher;
+class Form: public Item {
+    public:
+        Autor autor;
+        Publisher publisher;
+        std::string gender;
+        std::string allocationDate;
+        bool isAvailable;
+
+        Form(Autor autor, Publisher publisher, std::string gender, std::string allocationDate, bool isAvailable)
+        : Item { name }
+        , autor { autor }
+        , publisher {publisher}
+        , gender { gender }
+        , allocationDate { allocationDate}
+        , isAvailable { isAvailable }
+        {
+        }
 };
 
-struct Magazine {
-    int id;
-    std::string name;
-    Autor autor;
-    Publisher publisher;
+class Book: public Form {
 };
 
-struct User {
-    int id;
-    std::string name;
+class Magazine: public Form {
 };
 
 #endif
