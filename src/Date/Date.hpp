@@ -1,6 +1,10 @@
-#ifndef DATE_CPP
-#define DATE_CPP
+#ifndef DATE_HPP
+#define DATE_HPP
 
-#include "Date.cpp"
+#include <string>
+
+bool IsValidDate(std::string date);
+
+bool IsValidTime(std::string time);
 
 #endif
