@@ -1,6 +1,8 @@
 #ifndef CLASSES_HPP
 #define CLASSES_HPP
 
+#include "../LinkedList/LinkedList.hpp"
+
 #include <string>
 
 class Item {
@@ -13,8 +15,8 @@ class Item {
     }
 };
 
-class Blibioteca {
-
+class Library {
+    
 };
 
 class User: public Item {
