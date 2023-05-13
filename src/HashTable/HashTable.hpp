@@ -2,7 +2,6 @@
 #define HASH_HPP
 
 #include <iostream>
-#include "../Classes/Classes.hpp"
 
 namespace hst {
 
