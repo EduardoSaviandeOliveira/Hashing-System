@@ -3,5 +3,5 @@
 ## To run
 
 ```
-make && ./src/Main && make clean
+clear && make && ./src/Main && make clean
 ```
