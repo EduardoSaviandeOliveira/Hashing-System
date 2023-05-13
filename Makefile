@@ -1,17 +1,14 @@
 CC = g++
 CFLAGS = -Wall -Wextra -Werror -pedantic -std=c++17 -lm
 
-Main: Main.o Hash.o Classes.o Date.o LinkedList.o
-	$(CC) $(CFLAGS) src/Main.o src/Hash/Hash.o src/Classes/Classes.o -o src/Main
+Main: Main.o HashTable.o Date.o LinkedList.o Classes.o
+	$(CC) $(CFLAGS) src/Main.o src/HashTable/HashTable.o src/Classes/Classes.o -o src/Main
 
 Main.o: src/Main.cpp
 	$(CC) $(CFLAGS) -c src/Main.cpp -o src/Main.o
 
-Hash.o: src/Hash/Hash.cpp
-	$(CC) $(CFLAGS) -c src/Hash/Hash.cpp -o src/Hash/Hash.o
-
-Classes.o: src/Classes/Classes.cpp
-	$(CC) $(CFLAGS) -c src/Classes/Classes.cpp -o src/Classes/Classes.o
+HashTable.o: src/HashTable/HashTable.cpp
+	$(CC) $(CFLAGS) -c src/HashTable/HashTable.cpp -o src/HashTable/HashTable.o
 
 Date.o: src/Date/Date.cpp
 	$(CC) $(CFLAGS) -c src/Date/Date.cpp -o src/Date/Date.o
@@ -19,5 +16,33 @@ Date.o: src/Date/Date.cpp
 LinkedList.o: src/LinkedList/LinkedList.cpp
 	$(CC) $(CFLAGS) -c src/LinkedList/LinkedList.cpp -o src/LinkedList/LinkedList.o
 
+Classes.o: Library.o Item.o User.o Author.o Publisher.o Form.o Book.o Magazine.o
+	ld -r src/Classes/Library/Library.o src/Classes/Item/Item.o src/Classes/User/User.o src/Classes/Author/Author.o src/Classes/Publisher/Publisher.o src/Classes/Form/Form.o src/Classes/Book/Book.o src/Classes/Magazine/Magazine.o -o src/Classes/Classes.o
+
+Library.o: src/Classes/Library/Library.cpp
+	$(CC) $(CFLAGS) -c src/Classes/Library/Library.cpp -o src/Classes/Library/Library.o
+
+Item.o: src/Classes/Item/Item.cpp
+	$(CC) $(CFLAGS) -c src/Classes/Item/Item.cpp -o src/Classes/Item/Item.o
+
+User.o: src/Classes/User/User.cpp
+	$(CC) $(CFLAGS) -c src/Classes/User/User.cpp -o src/Classes/User/User.o
+
+Author.o: src/Classes/Author/Author.cpp
+	$(CC) $(CFLAGS) -c src/Classes/Author/Author.cpp -o src/Classes/Author/Author.o
+
+Publisher.o: src/Classes/Publisher/Publisher.cpp
+	$(CC) $(CFLAGS) -c src/Classes/Publisher/Publisher.cpp -o src/Classes/Publisher/Publisher.o
+
+Form.o: src/Classes/Form/Form.cpp
+	$(CC) $(CFLAGS) -c src/Classes/Form/Form.cpp -o src/Classes/Form/Form.o
+
+Book.o: src/Classes/Book/Book.cpp
+	$(CC) $(CFLAGS) -c src/Classes/Book/Book.cpp -o src/Classes/Book/Book.o
+
+Magazine.o: src/Classes/Magazine/Magazine.cpp
+	$(CC) $(CFLAGS) -c src/Classes/Magazine/Magazine.cpp -o src/Classes/Magazine/Magazine.o
+
+
 clean:
-	rm -f src/Main *.o src/*.o src/Hash/*.o src/Classes/*.o src/Date/*.o src/Date/*.o src/LinkedList/*.o
+	rm -f src/Main *.o src/*.o src/HashTable/*.o src/Date/*.o src/LinkedList/*.o src/Classes/*.o src/Classes/Library/*.o src/Classes/Item/*.o src/Classes/User/*.o src/Classes/Author/*.o src/Classes/Publisher/*.o src/Classes/Form/*.o src/Classes/Book/*.o src/Classes/Magazine/*.o

@@ -1,23 +1,23 @@
 #ifndef HASH_CPP
 #define HASH_CPP
 
-#include "Hash.hpp"
+#include "HashTable.hpp"
 
 template <typename K, typename V>
-HashTable<K,V> createHashTable() {
-    HashTable<K,V> hashTable;
+hst::HashTable<K,V> createHashTable() {
+    hst::HashTable<K,V> hashTable;
 
-    for (int i = 0; i < HASHMAX; i++)
+    for (int i = 0; i < hst::HASHMAX; i++)
         hashTable.table[i] = nullptr;
 
     return hashTable;
 }
 
 template <typename K, typename V>
-bool insert(HashTable<K,V>& hashTable, K key, V value) {
-    int index = key % HASHMAX;
+bool insert(hst::HashTable<K,V>& hashTable, K key, V value) {
+    int index = key % hst::HASHMAX;
 
-    HashNode<K,V>* newNode = new HashNode<K,V>;
+    hst::HashNode<K,V>* newNode = new hst::HashNode<K,V>;
     newNode->key = key;
     newNode->value = value;
     newNode->next = nullptr;
@@ -27,7 +27,7 @@ bool insert(HashTable<K,V>& hashTable, K key, V value) {
         return true;
     }
 
-    HashNode<K,V>* temp = hashTable.table[index];
+    hst::HashNode<K,V>* temp = hashTable.table[index];
     while (temp->next != nullptr)
         temp = temp->next;
 
