@@ -1,9 +1,12 @@
 CC = g++
 CFLAGS = -Wall -Wextra -Werror -pedantic -std=c++17 -lm
+OBJ1 = Main.o Date.o LinkedList.o HashTable.o Classes.o
+OBJ2 = src/Main.o src/Date/Date.o src/LinkedList/LinkedList.o src/HashTable/HashTable.o src/Classes/Classes.o
+EXE = src/Main
 
-Main: Main.o HashTable.o Date.o LinkedList.o Classes.o
-	$(CC) $(CFLAGS) src/Main.o src/HashTable/HashTable.o src/Classes/Classes.o -o src/Main
 
+Main: $(OBJ1)
+	$(CC) $(CFLAGS) $(OBJ2) -o $(EXE)
 Main.o: src/Main.cpp
 	$(CC) $(CFLAGS) -c src/Main.cpp -o src/Main.o
 
