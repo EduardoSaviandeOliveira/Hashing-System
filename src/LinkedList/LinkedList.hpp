@@ -1,26 +1,27 @@
 #ifndef LINKEDLIST_HPP
 #define LINKEDLIST_HPP
 
-namespace lkl {
-    template <typename T>
-    struct Node {
-        T data;
-        Node<T>* next;
-        Node<T>* prev;
-    };
+#include <iostream>
+#include "../Classes/Item/Item.hpp"
 
-    template <typename T>
-    struct LinkedList {
-        Node<T>* head;
-        Node<T>* tail;
+class LinkedListNode {
+    public:
+        Item* item;
+        LinkedListNode* next;
+        LinkedListNode* prev;
+
+        LinkedListNode();
+};
+
+class LinkedList {
+    public:
+        LinkedListNode* head;
+        LinkedListNode* tail;
         int size;
-    };
 
-    template <typename T>
-    LinkedList<T> create();
-
-    template <typename T>
-    bool insert(LinkedList<T>& list, T data);
-}
-
+        LinkedList();
+        void insert(Item* item);
+        void remove(Item* item);
+        void print();
+};
 #endif

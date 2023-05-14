@@ -4,13 +4,13 @@
 #include <string>
 
 class Item {
-    public:
-        static int id;
-        std::string name;
-    Item(std::string name) {
-        this->id++;
-        this->name = name;
-    }
+public:
+    int id;
+    std::string name;
+    Item(std::string name);
+
+private:
+    static int nextId;
 };
 
 #endif

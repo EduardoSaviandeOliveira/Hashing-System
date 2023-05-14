@@ -2,38 +2,78 @@
 #define HASH_CPP
 
 #include "HashTable.hpp"
-#include "../LinkedList/LinkedList.hpp"
 
-namespace hst {
-    template <typename K, typename V>
-    hst::HashTable<K,V> create() {
-        hst::HashTable<K,V> hashTable;
+HashTableNode::HashTableNode() {
+    this->list = new LinkedList();
+    this->next = nullptr;
+    this->prev = nullptr;
+}
 
-        for (int i = 0; i < hst::HASHMAX; i++)
-            hashTable.table[i] = nullptr;
+HashTable::HashTable() {
+    this->head = nullptr;
+    this->tail = nullptr;
+    this->size = 0;
+}
 
-        return hashTable;
-    }
-    template <typename K, typename V>
-    bool insert(hst::HashTable<K,V>& hashTable, K key, V value) {
-        int index = key % hst::HASHMAX;
+int HashTable::hash(Item* item) {
+    return item->id % HASHMAX;
+}
 
-        hst::HashNode<K,V>* newNode = new hst::HashNode<K,V>;
-        newNode->key = key;
-        newNode->value = value;
-        newNode->next = nullptr;
+void HashTable::insert(Item* item) {
+    int index = this->hash(item);
 
-        if (hashTable.table[index] == nullptr) {
-            hashTable.table[index] = newNode;
-            return true;
+    HashTableNode* newNode = new HashTableNode();
+    newNode->Index = index;
+    newNode->list->insert(item);
+
+    if (this->head == nullptr) {
+        this->head = newNode;
+        this->tail = newNode;
+    } else {
+        HashTableNode* node = this->head;
+
+        while (node != nullptr) {
+            if (node->Index == index) {
+                node->list->insert(item);
+                break;
+            }
+
+            node = node->next;
         }
 
-        hst::HashNode<K,V>* temp = hashTable.table[index];
-        while (temp->next != nullptr)
-            temp = temp->next;
+        if (node == nullptr) {
+            this->tail->next = newNode;
+            newNode->prev = this->tail;
+            this->tail = newNode;
+        }
+    }
 
-        temp->next = newNode;
-        return true;
+    this->size++;
+}
+
+void HashTable::remove(Item* item) {
+    int index = this->hash(item);
+
+    HashTableNode* node = this->head;
+
+    while (node != nullptr) {
+        if (node->Index == index) {
+            node->list->remove(item);
+            break;
+        }
+
+        node = node->next;
+    }
+
+    this->size--;
+}
+
+void HashTable::print() {
+    HashTableNode* node = this->head;
+
+    while (node != nullptr) {
+        node->list->print();
+        node = node->next;
     }
 }
 

@@ -8,6 +8,7 @@ EXE = src/Main
 
 Main: $(OBJ1)
 	$(CC) $(CFLAGS) $(OBJ2) -o $(EXE)
+
 Main.o: src/Main.cpp
 	$(CC) $(CFLAGS) -c src/Main.cpp -o src/Main.o
 

@@ -3,39 +3,66 @@
 
 #include "LinkedList.hpp"
 
-namespace lkl {
-    template <typename T>
-    lkl::LinkedList<T> create() {
-        lkl::LinkedList<T> list;
-        list.head = nullptr;
-        list.tail = nullptr;
-        list.size = 0;
-        return list;
+LinkedListNode::LinkedListNode() {
+    this->item = nullptr;
+    this->next = nullptr;
+    this->prev = nullptr;
+}
+
+LinkedList::LinkedList() {
+    this->head = nullptr;
+    this->tail = nullptr;
+    this->size = 0;
+}
+
+void LinkedList::insert(Item* item) {
+    LinkedListNode* newNode = new LinkedListNode();
+    newNode->item = item;
+
+    if (this->head == nullptr) {
+        this->head = newNode;
+        this->tail = newNode;
+    } else {
+        this->tail->next = newNode;
+        newNode->prev = this->tail;
+        this->tail = newNode;
     }
 
-    template <typename T>
-    bool insert(lkl::LinkedList<T>& list, T data) {
-        lkl::Node<T>* newNode = new lkl::Node<T>;
-        newNode->data = data;
-        newNode->next = nullptr;
-        newNode->prev = nullptr;
+    this->size++;
+}
 
-        if (list.head == nullptr) {
-            list.head = newNode;
-            list.tail = newNode;
-            list.size++;
-            return true;
+void LinkedList::remove(Item* item) {
+    LinkedListNode* node = this->head;
+
+    while (node != nullptr) {
+        if (node->item->id == item->id) {
+            if (node->prev == nullptr) {
+                this->head = node->next;
+            } else {
+                node->prev->next = node->next;
+            }
+
+            if (node->next == nullptr) {
+                this->tail = node->prev;
+            } else {
+                node->next->prev = node->prev;
+            }
+
+            this->size--;
+            break;
         }
 
-        lkl::Node<T>* temp = list.head;
-        while (temp->next != nullptr)
-            temp = temp->next;
-
-        temp->next = newNode;
-        newNode->prev = temp;
-        list.tail = newNode;
-        list.size++;
-        return true;
+        node = node->next;
     }
 }
+
+void LinkedList::print() {
+    LinkedListNode* node = this->head;
+
+    while (node != nullptr) {
+        std::cout << node->item->id << " " << node->item->name << std::endl;
+        node = node->next;
+    }
+}
+
 #endif

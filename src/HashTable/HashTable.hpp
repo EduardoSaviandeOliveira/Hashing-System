@@ -3,25 +3,33 @@
 
 #include <iostream>
 
-namespace hst {
-    const int HASHMAX = 69;
+#include "../LinkedList/LinkedList.hpp"
+#include "../Classes/Item/Item.hpp"
 
-    template <typename K, typename V>
-    struct HashNode {
-        K key;
-        V value;
-        HashNode* next;
-    };
+const int HASHMAX = 69;
 
-    template <typename K, typename V>
-    struct HashTable {
-        HashNode<K,V>* table[HASHMAX];
-    };
+// duplamente encadeada
+class HashTableNode {
+    public:
+        int Index;
+        LinkedList* list;
+        HashTableNode* next;
+        HashTableNode* prev;
 
-    template <typename K, typename V>
-    HashTable<K,V> create();
+        HashTableNode();
+};
 
-    template <typename K, typename V>
-    bool insert(HashTable<K,V>& hashTable, K key, V value);
-}
+class HashTable {
+    public:
+        HashTableNode* head;
+        HashTableNode* tail;
+        int size;
+
+        HashTable();
+        int hash(Item* item);
+        void insert(Item* item);
+        void remove(Item* item);
+        void print();
+};
+
 #endif
