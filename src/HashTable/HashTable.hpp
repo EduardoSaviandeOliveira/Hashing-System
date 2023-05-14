@@ -13,6 +13,7 @@ struct HashTableLinkedListNode {
     HashTableLinkedListNode* prev;
 
     HashTableLinkedListNode(Item* item);
+    void print();
 };
 
 struct HashTableLinkedList {
@@ -21,7 +22,26 @@ struct HashTableLinkedList {
     HashTableLinkedListNode* tail;
 
     HashTableLinkedList();
+    void print();
+    void insert(Item* item);
+    void remove(Item* item);
 };
 
+struct HashTableNode {
+    HashTableLinkedList* list;
+
+    HashTableNode();
+    void print();
+};
+
+struct HashTable {
+    HashTableNode* table[HASHMAX];
+
+    HashTable();
+    void print();
+    void print(int index);
+    void insert(Item* item);
+    void remove(Item* item);
+};
 
 #endif
