@@ -1,6 +1,6 @@
 CC = g++
-CFLAGS = -Wall -Wextra -Werror -pedantic -std=c++17 -lm
-#CFLAGS = -Wall -Wextra -pedantic -std=c++17 -lm
+#CFLAGS = -Wall -Wextra -Werror -pedantic -std=c++17 -lm
+CFLAGS = -Wall -Wextra -pedantic -std=c++17 -lm
 OBJ1 = Main.o Date.o HashTable.o Structs.o
 OBJ2 = src/Main.o src/Date/Date.o src/HashTable/HashTable.o src/Structs/Structs.o
 EXE = src/Main

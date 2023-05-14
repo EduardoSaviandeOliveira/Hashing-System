@@ -10,9 +10,10 @@ Item::Item() {
     this->name = "";
 }
 
-Item::Item(std::string name) {
+Item::Item(std::string name, std::string type) {
     this->ID = Item::nextID++;
     this->name = name;
+    this->type = type;
 }
 
 #endif
