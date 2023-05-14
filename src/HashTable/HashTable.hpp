@@ -3,45 +3,52 @@
 
 #include <iostream>
 
-#include "../Structs/Structs.hpp"
+#include "../Book/Book.hpp"
 
-const int HASHMAX = 69;
+const int LENGTH = 69;
 
 struct HashTableLinkedListNode {
-    Item* item;
+    Book* book;
     HashTableLinkedListNode* next;
     HashTableLinkedListNode* prev;
 
-    HashTableLinkedListNode(Item* item);
+    HashTableLinkedListNode(Book* book);
     void print();
 };
 
 struct HashTableLinkedList {
-    int size;
+    int length;
     HashTableLinkedListNode* head;
     HashTableLinkedListNode* tail;
 
     HashTableLinkedList();
     void print();
-    void insert(Item* item);
-    void remove(Item* item);
 };
 
 struct HashTableNode {
-    HashTableLinkedList* list;
+    HashTableLinkedList* linkedList;
+    HashTableNode* next;
+    HashTableNode* prev;
 
     HashTableNode();
     void print();
 };
 
 struct HashTable {
-    HashTableNode* table[HASHMAX];
+    HashTableNode* head;
+    HashTableNode* tail;
 
     HashTable();
+    void insert(Book* book);
+    void remove(Book* book);
+
+    void searchID(int ID);
+    void searchName(std::string name);
+    void searchAuthor(std::string author);
+    void searchPublisher(std::string publisher);
+    void searchGenre(std::string genre);
+
     void print();
-    void print(int index);
-    void insert(Item* item);
-    void remove(Item* item);
 };
 
 #endif
