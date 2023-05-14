@@ -22,7 +22,6 @@ void Author::printMagazines() {
     this->magazines.print();
 }
 
-
 void Author::addBook(Form* book) {
     this->books.insert(book);
 }

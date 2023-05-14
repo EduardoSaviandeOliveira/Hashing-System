@@ -4,8 +4,6 @@
 #include "../Form/Form.hpp"
 
 class Book: public Form {
-
 };
-
 
 #endif

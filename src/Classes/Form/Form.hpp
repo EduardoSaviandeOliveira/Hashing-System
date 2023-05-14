@@ -12,6 +12,7 @@ public:
     bool isAvailable;
 
     Form(std::string name, Publisher* publisher, std::string gender, std::string allocationDate, bool isAvailable);
+    void print() const override;
 };
 
 #endif

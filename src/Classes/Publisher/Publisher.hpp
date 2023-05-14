@@ -6,7 +6,9 @@
 #include "../../LinkedList/LinkedList.hpp"
 
 struct Publisher: public Item {
+public:
     Publisher(std::string name);
+    void print() const override;
 };
 
 #endif
