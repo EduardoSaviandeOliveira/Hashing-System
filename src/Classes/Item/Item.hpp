@@ -8,6 +8,7 @@ public:
     int id;
     std::string name;
     Item(std::string name);
+    virtual void print() const = 0;
 
 private:
     static int nextId;

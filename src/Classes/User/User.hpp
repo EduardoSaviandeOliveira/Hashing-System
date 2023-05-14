@@ -2,11 +2,13 @@
 #define USER_HPP
 
 #include "../Item/Item.hpp"
+#include "../../LinkedList/LinkedList.hpp"
+
 
 class User: public Item {
-    public:
-        // std::vector<Book> books;
-        // std::vector<Magazine> magazines;
+public:
+    User(std::string name);
+    void print() const override;
 };
 
 #endif

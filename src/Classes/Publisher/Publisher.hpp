@@ -3,9 +3,10 @@
 
 #include "../Item/Item.hpp"
 
+#include "../../LinkedList/LinkedList.hpp"
+
 struct Publisher: public Item {
-    // std::vector<Book> books;
-    // std::vector<Magazine> magazines;
+    Publisher(std::string name);
 };
 
 #endif
