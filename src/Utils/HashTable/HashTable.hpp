@@ -66,17 +66,22 @@ class HashTable {
                 entry->value = value;
             }
         }
-        V get(K key) {
+
+        V* get(K key) {
             int hashValue = hash(key);
-            HashTableNode<K, V> *entry = table[hashValue];
+            HashTableNode<K, V>* entry = table[hashValue];
             while (entry != nullptr) {
                 if (entry->key == key) {
-                    return entry->value;
+                    return &(entry->value);
                 }
                 entry = entry->next;
             }
             return nullptr;
         }
+
+
+
+
         void remove(K key) {
             int hashValue = hash(key);
             HashTableNode<K, V> *prev = nullptr;
@@ -96,7 +101,6 @@ class HashTable {
                 delete entry;
             }
         }
-        void print();
 };
 
 #endif

@@ -5,6 +5,15 @@
 
 int Book::nextID = 0;
 
+Book::Book() {
+    this->id = std::to_string(nextID);
+    this->title = "";
+    this->author = "";
+    this->publisher = "";
+    this->genre = "";
+    nextID++;
+}
+
 Book::Book(std::string title, std::string author, std::string publisher, std::string genre) {
     this->id = std::to_string(nextID);
     this->title = title;
@@ -35,7 +44,7 @@ std::string Book::getGenre() {
 }
 
 void Book::print() {
-    std::cout << "ID: " << this->author << std::endl;
+    std::cout << "ID: " << id << std::endl;
     std::cout << "Title: " << title << std::endl;
     std::cout << "Author: " << author << std::endl;
     std::cout << "Publisher: " << publisher << std::endl;

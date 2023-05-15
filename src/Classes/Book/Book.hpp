@@ -13,6 +13,7 @@ class Book {
         std::string publisher;
         std::string genre;
     public:
+        Book();
         Book(std::string title, std::string author, std::string publisher, std::string genre);
         std::string getID();
         std::string getTitle();
@@ -20,7 +21,7 @@ class Book {
         std::string getPublisher();
         std::string getGenre();
         void print();
-
 };
+
 
 #endif
