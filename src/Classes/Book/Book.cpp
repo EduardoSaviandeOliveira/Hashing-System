@@ -41,4 +41,20 @@ std::string Book::getGenre() {
     return genre;
 }
 
+void Book::setIsAvailable(bool isAvailable) {
+    this->isAvailable = isAvailable;
+}
+
+bool Book::getIsAvailable() {
+    return isAvailable;
+}
+
+void Book::setDateOfBorrow(std::string dateOfBorrow) {
+    this->dateOfBorrow = dateOfBorrow;
+}
+
+std::string Book::getDateOfBorrow() {
+    return dateOfBorrow;
+}
+
 #endif
