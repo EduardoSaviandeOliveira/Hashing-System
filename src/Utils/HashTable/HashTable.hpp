@@ -4,8 +4,6 @@
 #include <string>
 #include <iostream>
 
-const int TABLE_SIZE = 10;
-
 template <typename K, typename V>
 class HashTableNode {
     public:
@@ -24,6 +22,7 @@ class HashTableNode {
 template <typename K, typename V>
 class HashTable {
     private:
+        const int TABLE_SIZE = 10;
         HashTableNode<K, V> **table;
     public:
         HashTable() {
@@ -42,6 +41,10 @@ class HashTable {
                 }
             }
             delete[] table;
+        }
+
+        int getSize() {
+            return TABLE_SIZE;
         }
 
         int hash(K key) {
@@ -80,9 +83,6 @@ class HashTable {
             std::cout << "No value found for key: " << key << std::endl;
             return nullptr;
         }
-
-
-
 
         void remove(K key) {
             int hashValue = hash(key);

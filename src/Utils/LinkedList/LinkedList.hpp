@@ -1,8 +1,6 @@
 #ifndef LINKEDLIST_HPP
 #define LINKEDLIST_HPP
 
-#include <string>
-
 template <typename T>
 class LinkedListNode {
 public:
@@ -69,14 +67,6 @@ public:
                 size--;
                 break;
             }
-            entry = entry->next;
-        }
-    }
-
-    void print() {
-        LinkedListNode<T>* entry = head;
-        while (entry != nullptr) {
-            std::cout << entry->data << std::endl;
             entry = entry->next;
         }
     }

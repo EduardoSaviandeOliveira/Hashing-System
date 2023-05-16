@@ -25,12 +25,16 @@ std::string Author::getName() {
     return name;
 }
 
-void Author::setBook(int id) {
+LinkedList<int>* Author::getBooks() {
+    return books;
+}
+
+void Author::addBook(int id) {
     this->books->insert(id);
 }
 
-LinkedList<int>* Author::getBooks() {
-    return books;
+void Author::removeBook(int id) {
+    this->books->remove(id);
 }
 
 #endif
