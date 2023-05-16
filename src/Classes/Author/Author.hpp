@@ -19,7 +19,6 @@ class Author {
         std::string getName();
         void setBook(int id);
         LinkedList<int>* getBooks();
-        void print();
 };
 
 #endif

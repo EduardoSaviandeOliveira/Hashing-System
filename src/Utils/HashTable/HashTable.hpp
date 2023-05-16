@@ -2,6 +2,7 @@
 #define HASHTABLE_HPP
 
 #include <string>
+#include <iostream>
 
 const int TABLE_SIZE = 10;
 
@@ -76,6 +77,7 @@ class HashTable {
                 }
                 entry = entry->next;
             }
+            std::cout << "No value found for key: " << key << std::endl;
             return nullptr;
         }
 

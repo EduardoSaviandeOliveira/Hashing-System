@@ -33,10 +33,4 @@ LinkedList<int>* Author::getBooks() {
     return books;
 }
 
-void Author::print() {
-    std::cout << "Author: " << this->name << std::endl;
-    std::cout << "Books: " << std::endl;
-    this->books->print();
-}
-
 #endif

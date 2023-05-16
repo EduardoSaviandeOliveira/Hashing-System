@@ -9,20 +9,18 @@ class Book {
         static int nextID;
         int id;
         std::string title;
-        std::string author;
-        std::string publisher;
+        int author;
+        int publisher;
         std::string genre;
     public:
         Book();
-        Book(std::string title, std::string author, std::string publisher, std::string genre);
+        Book(std::string title, int author, int publisher, std::string genre);
 
         int getID();
         std::string getTitle();
-        std::string getAuthor();
-        std::string getPublisher();
+        int getAuthor();
+        int getPublisher();
         std::string getGenre();
-
-        void print();
 };
 
 #endif
