@@ -134,4 +134,14 @@ void Library::printAllMagazines() {
     }
 }
 
+void Library::addUser(User *user) {
+    users->insert(user->getID(), *user);
+}
+
+void Library::removeUser(int id) {
+    users->remove(id);
+}
+
+
+
 #endif

@@ -7,6 +7,9 @@
 #include <string>
 
 class User {
+    private:
+    static int nextID;
+    int id;
     std::string name;
     LinkedList<int> borrowedBooks;
 
@@ -14,6 +17,7 @@ class User {
         User();
         User(std::string name);
 
+        int getID();
         std::string getName();
         LinkedList<int> getBorrowedBooks();
 

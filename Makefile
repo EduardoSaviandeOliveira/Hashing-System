@@ -1,8 +1,8 @@
 CC = g++
 CFLAGS = -Wall -Wextra -Werror -pedantic -std=c++17 -lm
 #CFLAGS = -Wall -Wextra -pedantic -std=c++17 -lm
-OBJ1 = Main.o Menu.o Date.o HashTable.o LinkedList.o Library.o Author.o Publisher.o Book.o Magazine.o
-OBJ2 = src/Main.o src/Utils/Menu/Menu.o src/Utils/Date/Date.o src/Utils/HashTable/HashTable.o src/Utils/LinkedList/LinkedList.o src/Classes/Library/Library.o src/Classes/Author/Author.o src/Classes/Publisher/Publisher.o src/Classes/Book/Book.o src/Classes/Magazine/Magazine.o
+OBJ1 = Main.o Menu.o Date.o HashTable.o LinkedList.o Library.o Author.o Publisher.o Book.o Magazine.o User.o
+OBJ2 = src/Main.o src/Utils/Menu/Menu.o src/Utils/Date/Date.o src/Utils/HashTable/HashTable.o src/Utils/LinkedList/LinkedList.o src/Classes/Library/Library.o src/Classes/Author/Author.o src/Classes/Publisher/Publisher.o src/Classes/Book/Book.o src/Classes/Magazine/Magazine.o src/Classes/User/User.o
 EXE = src/Main
 
 Main: $(OBJ1)
@@ -38,5 +38,21 @@ Book.o: src/Classes/Book/Book.cpp
 Magazine.o: src/Classes/Magazine/Magazine.cpp
 	$(CC) $(CFLAGS) -c src/Classes/Magazine/Magazine.cpp -o src/Classes/Magazine/Magazine.o
 
+User.o : src/Classes/User/User.cpp
+	$(CC) $(CFLAGS) -c src/Classes/User/User.cpp -o src/Classes/User/User.o
+
 clean:
-	rm -f src/Main *.o src/*.o src/Utils/Menu/*.o src/Utils/Date/*.o src/Utils/HashTable/*.o src/Utils/LinkedList/*.o src/Classes/Library/*.o  src/Classes/Author/*.o src/Classes/Publisher/*.o src/Classes/Book/*.o src/Classes/Magazine/*.o
+	rm -f src/Main *.o
+	rm -f src/*.o
+	rm -f src/Utils/*.o
+	rm -f src/Utils/Menu/*.o
+	rm -f src/Utils/Date/*.o
+	rm -f src/Utils/HashTable/*.o
+	rm -f src/Utils/LinkedList/*.o
+	rm -f src/Classes/*.o
+	rm -f src/Classes/Library/*.o
+	rm -f src/Classes/Author/*.o
+	rm -f src/Classes/Publisher/*.o
+	rm -f src/Classes/Book/*.o
+	rm -f src/Classes/Magazine/*.o
+	rm -f src/Classes/User/*.o

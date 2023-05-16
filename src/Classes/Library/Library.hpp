@@ -7,12 +7,14 @@
 #include "../Publisher/Publisher.hpp"
 #include "../Book/Book.hpp"
 #include "../Magazine/Magazine.hpp"
+#include "../User/User.hpp"
 
 class Library {
     private:
-        HashTable<int, Book> *books;
+        HashTable<int, User> *users;
         HashTable<int, Author> *authors;
         HashTable<int, Publisher> *publishers;
+        HashTable<int, Book> *books;
         HashTable<int, Magazine> *magazines;
 
     public:
@@ -38,6 +40,14 @@ class Library {
         void removeMagazine(int id);
         void printMagazine(int id);
         void printAllMagazines();
+
+        void addUser(User* user);
+        void removeUser(int id);
+        void printUser(int id);
+        void printAllUsers();
+        void borrowBook(int userID, int bookID);
+        void returnBook(int userID, int bookID);
+
 };
 
 #endif
