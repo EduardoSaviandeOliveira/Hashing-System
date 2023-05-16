@@ -6,7 +6,7 @@
 int Book::nextID = 0;
 
 Book::Book() {
-    this->id = std::to_string(nextID);
+    this->id = nextID;
     this->title = "";
     this->author = "";
     this->publisher = "";
@@ -15,7 +15,7 @@ Book::Book() {
 }
 
 Book::Book(std::string title, std::string author, std::string publisher, std::string genre) {
-    this->id = std::to_string(nextID);
+    this->id = nextID;
     this->title = title;
     this->author = author;
     this->publisher = publisher;
@@ -23,7 +23,7 @@ Book::Book(std::string title, std::string author, std::string publisher, std::st
     nextID++;
 }
 
-std::string Book::getID() {
+int Book::getID() {
     return id;
 }
 

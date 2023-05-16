@@ -12,8 +12,8 @@ Library::~Library() {
 }
 
 void Library::addBook(Book* book) {
-    int id = std::stoi(book->getID());  // Convert string ID to integer
-    books->insert(id, *book);
+    books->insert(book->getID(), *book);
+
 }
 
 void Library::removeBook(int id) {
@@ -24,8 +24,17 @@ void Library::printBook(int id) {
     books->get(id)->print();
 }
 
+void Library::addAuthor(Author* author) {
+    authors->insert(author->getId(), *author);
+}
 
 
+void Library::removeAuthor(int id) {
+    authors->remove(id);
+}
 
+void Library::printAuthor(int id) {
+    authors->get(id)->print();
+}
 
 #endif

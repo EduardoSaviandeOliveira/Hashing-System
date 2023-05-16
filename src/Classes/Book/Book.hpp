@@ -7,7 +7,7 @@
 class Book {
     private:
         static int nextID;
-        std::string id;
+        int id;
         std::string title;
         std::string author;
         std::string publisher;
@@ -15,13 +15,14 @@ class Book {
     public:
         Book();
         Book(std::string title, std::string author, std::string publisher, std::string genre);
-        std::string getID();
+
+        int getID();
         std::string getTitle();
         std::string getAuthor();
         std::string getPublisher();
         std::string getGenre();
+
         void print();
 };
-
 
 #endif
