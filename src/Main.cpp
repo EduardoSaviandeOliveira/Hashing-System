@@ -1,10 +1,8 @@
-#include "Classes/Library/Library.hpp"
-
+#include "Utils/Menu/Menu.hpp"
 
 int main() {
-    Library *library = new Library();
-
-    library->~Library();
+    Menu menu = Menu();
+    menu.run();
 
     return 0;
 }
