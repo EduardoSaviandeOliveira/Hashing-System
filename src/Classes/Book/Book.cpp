@@ -7,10 +7,11 @@ int Book::nextID = 0;
 
 Book::Book() {
     this->id = nextID++;
-    std::string title = "";
+    this->title = "";
     this->author = 0;
     this->publisher = 0;
     this->genre = "";
+    this->borrowedBy = 0;
     this->isBorrow = false;
     this->dateOfBorrow = "";
 }
@@ -20,6 +21,7 @@ Book::Book(std::string title, int author, int publisher, std::string genre, std:
     this->title = title;
     this->author = author;
     this->publisher = publisher;
+    this->borrowedBy = 0;
     this->genre = genre;
     this->isBorrow = false;
     this->dateOfBorrow = dateOfBorrow;
@@ -47,6 +49,10 @@ std::string Book::getGenre() {
 
 bool Book::getIsBorrow() {
     return isBorrow;
+}
+
+int Book::getBorrowedBy() {
+    return borrowedBy;
 }
 
 void Book::setAuthor(int author) {

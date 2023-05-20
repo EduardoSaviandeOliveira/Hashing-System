@@ -88,7 +88,6 @@ public:
     bool contains(T data) {
         LinkedListNode<T>* entry = head;
         while (entry != nullptr) {
-            std::cout << "entry->data: " << entry->data << std::endl;
             if (entry->data == data) {
                 return true;
             }

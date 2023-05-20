@@ -52,10 +52,8 @@ void User::borrowBook(int bookID) {
 }
 
 void User::returnBook(int bookID) {
-    std::cout << "returnBook" << std::endl;
     std::cout << "bookID: " << bookID << std::endl;
-    borrowedBooks.remove(bookID);
-    std::cout << "returnBook" << std::endl;
+    this->borrowedBooks.remove(bookID);
 }
 
 void User::borrowMagazine(int magazineID) {

@@ -11,6 +11,7 @@ class Book {
         std::string title;
         int author;
         int publisher;
+        int borrowedBy;
         std::string genre;
         bool isBorrow;
         std::string dateOfBorrow;
@@ -23,6 +24,7 @@ class Book {
         int getAuthor();
         int getPublisher();
         std::string getGenre();
+        int getBorrowedBy();
 
         void setAuthor(int author);
         void setPublisher(int publisher);

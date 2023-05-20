@@ -29,11 +29,11 @@ LinkedList<int>* Publisher::getBooks() {
 }
 
 void Publisher::addBook(int id) {
-    this->books->insert(id);
+    books->insert(id);
 }
 
 void Publisher::removeBook(int id) {
-    this->books->remove(id);
+    books->remove(id);
 }
 
 #endif
