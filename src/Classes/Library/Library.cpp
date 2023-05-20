@@ -81,7 +81,7 @@ void Library::removeBook(int id) {
     }
 
     authors->get(books->get(id)->getAuthor())->removeBook(id);
-    //publishers->get(books->get(id)->getPublisher())->removeBook(id);
+    publishers->get(books->get(id)->getPublisher())->removeBook(id);
 
     if (books->get(id)->getIsBorrow()) {
         users->get(books->get(id)->getBorrowedBy())->returnBook(id);
@@ -173,7 +173,7 @@ void Library::printBooksHistory(int id) {
     std::cout << "User Name: " << users->get(id)->getName() << std::endl;
     std::cout << "User Books History: " << std::endl;
     LinkedList<int> books = users->get(id)->getBorrowedBooksHistory();
-    for (int i = 0; i < books.getSize(); i++) {
+    for(int i = 0; i < books.getSize() - 1; i++) {
         std::cout << this->books->get(books.get(i))->getTitle() << std::endl;
     }
 }
@@ -233,7 +233,7 @@ void Library::returnBook(int userID, int bookID) {
 
 void Library::printBorrowedBooks(int userID) {
     LinkedList<int> books = users->get(userID)->getBorrowedBooks();
-    for (int i = 0; i < books.getSize(); i++) {
+    for (int i = 0; i < books.getSize() - 1; i++) {
         std::cout << this->books->get(books.get(i))->getID() << " " << this->books->get(books.get(i))->getTitle() << " " << this->books->get(books.get(i))->getDateOfBorrow() << std::endl;
     }
 }
@@ -290,9 +290,15 @@ void Library::printBorrowedMagazines(int userID) {
 }
 
 void Library::printGenreBooks(std::string genre) {
-    for (int i = 0; i < books->getSize(); i++) {
-        if (books->get(i)->getGenre() == genre) {
-            std::cout << books->get(i)->getID() << " " << books->get(i)->getTitle() << std::endl;
+    std::cout << "Books: " << books->getSize() << std::endl;
+    for (int i = 0; i < books->getSize2(); i++) {
+        if(books->get(i) == nullptr) {
+            std::cout << "Book not found" << std::endl;
+            return;
+        } else {
+            if(books->get(i)->getGenre() == genre) {
+                std::cout << books->get(i)->getID() << " " << books->get(i)->getTitle() << std::endl;
+            }
         }
     }
 }
@@ -300,7 +306,12 @@ void Library::printGenreBooks(std::string genre) {
 void Library::printGenreMagazines(std::string genre) {
     for (int i = 0; i < magazines->getSize(); i++) {
         if (magazines->get(i)->getGenre() == genre) {
-            std::cout << magazines->get(i)->getID() << " " << magazines->get(i)->getTitle() << std::endl;
+            if(magazines->get(i) == nullptr) {
+                std::cout << "Magazine not found" << std::endl;
+                return;
+            } else {
+                std::cout << magazines->get(i)->getID() << " " << magazines->get(i)->getTitle() << std::endl;
+            }
         }
     }
 }

@@ -23,6 +23,7 @@ template <typename K, typename V>
 class HashTable {
     private:
         const int TABLE_SIZE = 10;
+        int size;
         HashTableNode<K, V> **table;
     public:
         HashTable() {
@@ -69,6 +70,7 @@ class HashTable {
             } else {
                 entry->value = value;
             }
+            size++;
         }
 
         V* get(K key) {
@@ -82,6 +84,10 @@ class HashTable {
             }
             std::cout << "No value found for key: " << key << std::endl;
             return nullptr;
+        }
+
+        int getSize2() {
+            return size;
         }
 
         void remove(K key) {
