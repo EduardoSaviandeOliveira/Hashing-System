@@ -1,6 +1,8 @@
 #ifndef LINKEDLIST_HPP
 #define LINKEDLIST_HPP
 
+#include <iostream>
+
 template <typename T>
 class LinkedListNode {
 public:
@@ -81,6 +83,18 @@ public:
 
     int getSize() {
         return size;
+    }
+
+    bool contains(T data) {
+        LinkedListNode<T>* entry = head;
+        while (entry != nullptr) {
+            std::cout << "entry->data: " << entry->data << std::endl;
+            if (entry->data == data) {
+                return true;
+            }
+            entry = entry->next;
+        }
+        return false;
     }
 };
 

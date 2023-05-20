@@ -139,14 +139,28 @@ void Library::borrowBook(int userID, int bookID, std::string date) {
 
 
 void Library::returnBook(int userID, int bookID) {
-    if (!books->get(bookID)->getIsBorrow()) {
-        std::cout << "Book is not borrowed" << std::endl;
+    User* user = users->get(userID);
+    if (!user) {
+        std::cout << "User not found" << std::endl;
         return;
     }
 
-    users->get(userID)->returnBook(bookID);
-    books->get(bookID)->setIsBorrow(false);
-    books->get(bookID)->setDateOfBorrow("");
+    Book* book = books->get(bookID);
+    if (!book) {
+        std::cout << "Book not found" << std::endl;
+        return;
+    }
+
+    LinkedList<int> borrowedBooks = user->getBorrowedBooks();
+    if (!borrowedBooks.contains(bookID)) {
+        std::cout << "Book not found in the borrowed list." << std::endl;
+        return;
+    }
+
+    user->returnBook(bookID);
+    book->setIsBorrow(false);
+    book->setDateOfBorrow("");
+    std::cout << "Book returned successfully" << std::endl;
 }
 
 void Library::printBorrowedBooks(int userID) {

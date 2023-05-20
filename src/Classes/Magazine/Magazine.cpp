@@ -6,17 +6,17 @@
 int Magazine::nextID = 0;
 
 Magazine::Magazine() {
-    id = nextID++;
+    this->id = nextID++;
     std::string title = "";
-    author = 0;
-    publisher = 0;
-    genre = "";
-    isBorrow = false;
-    dateOfBorrow = "";
+    this->author = 0;
+    this->publisher = 0;
+    this->genre = "";
+    this->isBorrow = false;
+    this->dateOfBorrow = "";
 }
 
 Magazine::Magazine(std::string title, int author, int publisher, std::string genre) {
-    id = nextID++;
+    this->id = nextID++;
     this->title = title;
     this->author = author;
     this->publisher = publisher;

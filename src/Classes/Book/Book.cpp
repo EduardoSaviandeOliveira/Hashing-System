@@ -6,13 +6,13 @@
 int Book::nextID = 0;
 
 Book::Book() {
-    id = nextID++;
+    this->id = nextID++;
     std::string title = "";
-    author = 0;
-    publisher = 0;
-    genre = "";
-    isBorrow = false;
-    dateOfBorrow = "";
+    this->author = 0;
+    this->publisher = 0;
+    this->genre = "";
+    this->isBorrow = false;
+    this->dateOfBorrow = "";
 }
 
 Book::Book(std::string title, int author, int publisher, std::string genre, std::string dateOfBorrow) {

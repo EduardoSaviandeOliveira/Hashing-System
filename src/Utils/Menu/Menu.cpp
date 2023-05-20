@@ -35,6 +35,10 @@ void Menu::run() {
 
     library.printBorrowedBooks(user1.getID());
 
+    library.returnBook(user1.getID(), book1.getID());
+
+    //library.printBorrowedBooks(user1.getID());
+
 
 }
 
