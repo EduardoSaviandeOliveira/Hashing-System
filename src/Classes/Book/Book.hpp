@@ -12,11 +12,11 @@ class Book {
         int author;
         int publisher;
         std::string genre;
-        bool isAvailable;
+        bool isBorrow;
         std::string dateOfBorrow;
     public:
         Book();
-        Book(std::string title, int author, int publisher, std::string genre);
+        Book(std::string title, int author, int publisher, std::string genre, bool isBorrow, std::string dateOfBorrow);
 
         int getID();
         std::string getTitle();
@@ -24,8 +24,8 @@ class Book {
         int getPublisher();
         std::string getGenre();
 
-        void setIsAvailable(bool isAvailable);
-        bool getIsAvailable();
+        void setIsBorrow(bool isAvailable);
+        bool getIsBorrow();
         void setDateOfBorrow(std::string dateOfBorrow);
         std::string getDateOfBorrow();
 };

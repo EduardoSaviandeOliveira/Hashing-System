@@ -1,6 +1,6 @@
 # Hashing-System
 
-## To run
+## To run (Only Unix like)
 
 ```
 clear && make && ./src/Main && make clean

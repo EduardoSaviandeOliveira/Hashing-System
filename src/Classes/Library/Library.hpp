@@ -21,30 +21,25 @@ class Library {
         Library();
         ~Library();
 
-        void addAuthor(Author* author);
+        void addAuthor(Author author);
         void removeAuthor(int id);
         void printAuthor(int id);
-        void printAllAuthors();
 
-        void addPublisher(Publisher* publisher);
+        void addPublisher(Publisher publisher);
         void removePublisher(int id);
         void printPublisher(int id);
-        void printAllPublishers();
 
-        void addBook(Book* book);
+        void addBook(Book book);
         void removeBook(int id);
         void printBook(int id);
-        void printAllBooks();
 
-        void addMagazine(Magazine* magazine);
+        void addMagazine(Magazine magazine);
         void removeMagazine(int id);
         void printMagazine(int id);
-        void printAllMagazines();
 
-        void addUser(User* user);
+        void addUser(User user);
         void removeUser(int id);
         void printUser(int id);
-        void printAllUsers();
         void borrowBook(int userID, int bookID);
         void returnBook(int userID, int bookID);
 

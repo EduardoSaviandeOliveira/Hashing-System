@@ -17,8 +17,8 @@ Library::~Library() {
     delete magazines;
 }
 
-void Library::addAuthor(Author* author) {
-    authors->insert(author->getId(), *author);
+void Library::addAuthor(Author author) {
+    authors->insert(author.getId(), author);
 }
 
 void Library::removeAuthor(int id) {
@@ -28,28 +28,15 @@ void Library::removeAuthor(int id) {
 void Library::printAuthor(int id) {
     std::cout << "Author ID: " << authors->get(id)->getId() << std::endl;
     std::cout << "Author Name: " << authors->get(id)->getName() << std::endl;
-    std::cout << "Author Books: " << std::endl; // print books names
+    std::cout << "Author Books: " << std::endl;
     LinkedList<int> *books = authors->get(id)->getBooks();
     for (int i = 0; i < books->getSize(); i++) {
         std::cout << this->books->get(books->get(i))->getTitle() << std::endl;
     }
 }
 
-void Library::printAllAuthors() {
-    for (int i = 0; i < authors->getSize(); i++) {
-        std::cout << "Author ID: " << authors->get(i)->getId() << std::endl;
-        std::cout << "Author Name: " << authors->get(i)->getName() << std::endl;
-        std::cout << "Author Books: " << std::endl;
-        LinkedList<int> *books = authors->get(i)->getBooks();
-        for (int i = 0; i < books->getSize(); i++) {
-            std::cout << this->books->get(books->get(i))->getTitle() << std::endl;
-        }
-        std::cout << std::endl;
-    }
-}
-
-void Library::addPublisher(Publisher* publisher) {
-    publishers->insert(publisher->getId(), *publisher);
+void Library::addPublisher(Publisher publisher) {
+    publishers->insert(publisher.getId(), publisher);
 }
 
 void Library::removePublisher(int id) {
@@ -66,22 +53,9 @@ void Library::printPublisher(int id) {
     }
 }
 
-void Library::printAllPublishers() {
-    for (int i = 0; i < publishers->getSize(); i++) {
-        std::cout << "Publisher ID: " << publishers->get(i)->getId() << std::endl;
-        std::cout << "Publisher Name: " << publishers->get(i)->getName() << std::endl;
-        std::cout << "Publisher Books: " << std::endl;
-        LinkedList<int> *books = publishers->get(i)->getBooks();
-        for (int i = 0; i < books->getSize(); i++) {
-            std::cout << this->books->get(books->get(i))->getTitle() << std::endl;
-        }
-        std::cout << std::endl;
-    }
-}
-
-void Library::addBook(Book* book) {
-    books->insert(book->getID(), *book);
-
+void Library::addBook(Book book) {
+    authors->get(book.getAuthor())->addBook(book.getID());
+    books->insert(book.getID(), book);
 }
 
 void Library::removeBook(int id) {
@@ -92,23 +66,12 @@ void Library::printBook(int id) {
     std::cout << "Book ID: " << books->get(id)->getID() << std::endl;
     std::cout << "Book Title: " << books->get(id)->getTitle() << std::endl;// seach for the author id in the hash table and print the name
     std::cout << "Book Author: " << authors->get(books->get(id)->getAuthor())->getName() << std::endl;
-    std::cout << "Book Publisher: " << books->get(id)->getPublisher() << std::endl;
+    std::cout << "Book Publisher: " << publishers->get(books->get(id)->getPublisher())->getName() << std::endl;
     std::cout << "Book Genre: " << books->get(id)->getGenre() << std::endl;
 }
 
-void Library::printAllBooks() {
-    for (int i = 0; i < books->getSize(); i++) {
-        std::cout << "Book ID: " << books->get(i)->getID() << std::endl;
-        std::cout << "Book Title: " << books->get(i)->getTitle() << std::endl;
-        std::cout << "Book Author: " << authors->get(books->get(i)->getAuthor())->getName() << std::endl;
-        std::cout << "Book Publisher: " << books->get(i)->getPublisher() << std::endl;
-        std::cout << "Book Genre: " << books->get(i)->getGenre() << std::endl;
-        std::cout << std::endl;
-    }
-}
-
-void Library::addMagazine(Magazine* magazine) {
-    magazines->insert(magazine->getID(), *magazine);
+void Library::addMagazine(Magazine magazine) {
+    magazines->insert(magazine.getID(), magazine);
 }
 
 void Library::removeMagazine(int id) {
@@ -123,25 +86,30 @@ void Library::printMagazine(int id) {
     std::cout << "Magazine Genre: " << magazines->get(id)->getGenre() << std::endl;
 }
 
-void Library::printAllMagazines() {
-    for (int i = 0; i < magazines->getSize(); i++) {
-        std::cout << "Magazine ID: " << magazines->get(i)->getID() << std::endl;
-        std::cout << "Magazine Title: " << magazines->get(i)->getTitle() << std::endl;
-        std::cout << "Magazine Author: " << authors->get(magazines->get(i)->getAuthor())->getName() << std::endl;
-        std::cout << "Magazine Publisher: " << publishers->get(magazines->get(i)->getPublisher())->getName() << std::endl;
-        std::cout << "Magazine Genre: " << magazines->get(i)->getGenre() << std::endl;
-        std::cout << std::endl;
-    }
-}
-
-void Library::addUser(User *user) {
-    users->insert(user->getID(), *user);
+void Library::addUser(User user) {
+    users->insert(user.getID(), user);
 }
 
 void Library::removeUser(int id) {
     users->remove(id);
 }
 
+void Library::printUser(int id) {
+    std::cout << "User ID: " << users->get(id)->getID() << std::endl;
+    std::cout << "User Name: " << users->get(id)->getName() << std::endl;
+    std::cout << "User Books: " << std::endl;
+    LinkedList<int> books = users->get(id)->getBorrowedBooks();
+    for (int i = 0; i < books.getSize(); i++) {
+        std::cout << this->books->get(books.get(i))->getTitle() << std::endl;
+    }
+}
 
+void Library::borrowBook(int userID, int bookID) {
+    users->get(userID)->borrowBook(bookID);
+}
+
+void Library::returnBook(int userID, int bookID) {
+    users->get(userID)->returnBook(bookID);
+}
 
 #endif
