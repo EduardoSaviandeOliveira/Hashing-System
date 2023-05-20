@@ -24,11 +24,6 @@ void Menu::run() {
     library.addBook(book1);
     library.addBook(book2);
 
-    //library.printBook(book1.getID());
-
-    // library.printAuthor(author1.getId());
-    // library.printAuthor(author2.getId());
-
     User user1 = User("User 1");
     User user2 = User("User 2");
 

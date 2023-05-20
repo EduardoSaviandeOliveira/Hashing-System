@@ -97,6 +97,17 @@ void Library::printUser(int id) {
         std::cout << this->books->get(books.get(i))->getTitle() << std::endl;
     }
 }
+
+void Library::printBooksHistory(int id) {
+    std::cout << "User ID: " << users->get(id)->getID() << std::endl;
+    std::cout << "User Name: " << users->get(id)->getName() << std::endl;
+    std::cout << "User Books History: " << std::endl;
+    LinkedList<int> books = users->get(id)->getBorrowedBooksHistory();
+    for (int i = 0; i < books.getSize(); i++) {
+        std::cout << this->books->get(books.get(i))->getTitle() << std::endl;
+    }
+}
+
 void Library::borrowBook(int userID, int bookID, std::string date) {
     User* user = users->get(userID);
     if (!user) {
@@ -193,6 +204,42 @@ void Library::printBorrowedMagazines(int userID) {
     LinkedList<int> magazines = users->get(userID)->getBorrowedMagazines();
     for (int i = 0; i < magazines.getSize(); i++) {
         std::cout << this->magazines->get(magazines.get(i))->getID() << " " << this->magazines->get(magazines.get(i))->getTitle() << " " << this->magazines->get(magazines.get(i))->getDateOfBorrow() << std::endl;
+    }
+}
+
+void Library::printGenreBooks(std::string genre) {
+    for (int i = 0; i < books->getSize(); i++) {
+        if (books->get(i)->getGenre() == genre) {
+            std::cout << books->get(i)->getID() << " " << books->get(i)->getTitle() << std::endl;
+        }
+    }
+}
+
+void Library::printGenreMagazines(std::string genre) {
+    for (int i = 0; i < magazines->getSize(); i++) {
+        if (magazines->get(i)->getGenre() == genre) {
+            std::cout << magazines->get(i)->getID() << " " << magazines->get(i)->getTitle() << std::endl;
+        }
+    }
+}
+
+void Library::printLateBooks() { //with current date
+    for (int i = 0; i < books->getSize(); i++) {
+        if (books->get(i)->getIsBorrow()) {
+            if (IsLate(books->get(i)->getDateOfBorrow()) == true) {
+                std::cout << books->get(i)->getID() << " " << books->get(i)->getTitle() << std::endl;
+            }
+        }
+    }
+}
+
+void Library::printLateMagazines() {
+    for (int i = 0; i < magazines->getSize(); i++) {
+        if (magazines->get(i)->getIsBorrow()) {
+            if (IsLate(magazines->get(i)->getDateOfBorrow()) == true) {
+                std::cout << magazines->get(i)->getID() << " " << magazines->get(i)->getTitle() << std::endl;
+            }
+        }
     }
 }
 

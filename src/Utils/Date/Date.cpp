@@ -20,6 +20,40 @@ std::string GetCurrentDate() {
     return year + "-" + month + "-" + day;
 }
 
+bool IsLate(std::string date) {
+    std::string currentDate = GetCurrentDate();
+
+    std::string currentYear = currentDate.substr(0, 4);
+    std::string currentMonth = currentDate.substr(5, 2);
+    std::string currentDay = currentDate.substr(8, 2);
+
+    std::string year = date.substr(0, 4);
+    std::string month = date.substr(5, 2);
+    std::string day = date.substr(8, 2);
+
+    if (year.length() != 4 || month.length() != 2 || day.length() != 2)
+        return false;
+
+    int currentYearInt = std::stoi(currentYear);
+    int currentMonthInt = std::stoi(currentMonth);
+    int currentDayInt = std::stoi(currentDay);
+
+    int yearInt = std::stoi(year);
+    int monthInt = std::stoi(month);
+    int dayInt = std::stoi(day);
+
+    if (yearInt < currentYearInt)
+        return true;
+
+    if (yearInt == currentYearInt && monthInt < currentMonthInt)
+        return true;
+
+    if (yearInt == currentYearInt && monthInt == currentMonthInt && dayInt < currentDayInt)
+        return true;
+
+    return false;
+}
+
 bool IsValidDate(std::string date) {
     if (date.length() != 10)
         return false;

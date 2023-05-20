@@ -35,6 +35,18 @@ LinkedList<int> User::getBorrowedBooks() {
     return borrowedBooks;
 }
 
+LinkedList<int> User::getBorrowedMagazines() {
+    return borrowedMagazines;
+}
+
+LinkedList<int> User::getBorrowedBooksHistory() {
+    return borrowedBooksHistory;
+}
+
+LinkedList<int> User::getBorrowedMagazinesHistory() {
+    return borrowedMagazinesHistory;
+}
+
 void User::borrowBook(int bookID) {
     borrowedBooks.insert(bookID);
 }

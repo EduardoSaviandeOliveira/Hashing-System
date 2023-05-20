@@ -45,12 +45,24 @@ std::string Book::getGenre() {
     return genre;
 }
 
-void Book::setIsBorrow(bool isAvailable) {
-    this->isBorrow = isAvailable;
-}
-
 bool Book::getIsBorrow() {
     return isBorrow;
+}
+
+void Book::setAuthor(int author) {
+    this->author = author;
+}
+
+void Book::setPublisher(int publisher) {
+    this->publisher = publisher;
+}
+
+void Book::setGenre(std::string genre) {
+    this->genre = genre;
+}
+
+void Book::setIsBorrow(bool isAvailable) {
+    this->isBorrow = isAvailable;
 }
 
 void Book::setDateOfBorrow(std::string dateOfBorrow) {

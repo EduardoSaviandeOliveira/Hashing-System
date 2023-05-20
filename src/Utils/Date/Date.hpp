@@ -7,6 +7,8 @@
 
 std::string GetCurrentDate();
 
+bool IsLate(std::string date);
+
 bool IsValidDate(std::string date);
 
 bool IsValidTime(std::string time);
