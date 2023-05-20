@@ -15,13 +15,13 @@ Book::Book() {
     dateOfBorrow = "";
 }
 
-Book::Book(std::string title, int author, int publisher, std::string genre, bool isBorrow, std::string dateOfBorrow) {
+Book::Book(std::string title, int author, int publisher, std::string genre, std::string dateOfBorrow) {
     id = nextID++;
     this->title = title;
     this->author = author;
     this->publisher = publisher;
     this->genre = genre;
-    this->isBorrow = isBorrow;
+    this->isBorrow = false;
     this->dateOfBorrow = dateOfBorrow;
 }
 

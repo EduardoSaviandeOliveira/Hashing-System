@@ -3,6 +3,23 @@
 
 #include "Date.hpp"
 
+std::string GetCurrentDate() {
+    time_t now = time(0);
+    tm *ltm = localtime(&now);
+
+    std::string year = std::to_string(1900 + ltm->tm_year);
+    std::string month = std::to_string(1 + ltm->tm_mon);
+    std::string day = std::to_string(ltm->tm_mday);
+
+    if (month.length() == 1)
+        month = "0" + month;
+
+    if (day.length() == 1)
+        day = "0" + day;
+
+    return year + "-" + month + "-" + day;
+}
+
 bool IsValidDate(std::string date) {
     if (date.length() != 10)
         return false;

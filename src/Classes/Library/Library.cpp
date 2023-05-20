@@ -4,6 +4,7 @@
 #include "Library.hpp"
 
 Library::Library() {
+    users = new HashTable<int, User>();
     authors = new HashTable<int, Author>();
     publishers = new HashTable<int, Publisher>();
     books = new HashTable<int, Book>();
@@ -11,10 +12,26 @@ Library::Library() {
 }
 
 Library::~Library() {
-    delete authors;
-    delete publishers;
-    delete books;
-    delete magazines;
+    if (users != nullptr) {
+        delete users;
+        users = nullptr;
+    }
+    if (authors != nullptr) {
+        delete authors;
+        authors = nullptr;
+    }
+    if (publishers != nullptr) {
+        delete publishers;
+        publishers = nullptr;
+    }
+    if (books != nullptr) {
+        delete books;
+        books = nullptr;
+    }
+    if (magazines != nullptr) {
+        delete magazines;
+        magazines = nullptr;
+    }
 }
 
 void Library::addAuthor(Author author) {
@@ -104,12 +121,51 @@ void Library::printUser(int id) {
     }
 }
 
+// verificar se user tem algum livro em atraso
+// set date to current date
+
 void Library::borrowBook(int userID, int bookID) {
-    users->get(userID)->borrowBook(bookID);
+    User* user = users->get(userID);
+    if (!user) {
+        std::cout << "User not found" << std::endl;
+        return;
+    }
+
+    Book* book = books->get(bookID);
+    if (!book) {
+        std::cout << "Book not found" << std::endl;
+        return;
+    }
+
+    if (book->getIsBorrow()) {
+        std::cout << "Book is already borrowed" << std::endl;
+        return;
+    }
+
+    user->borrowBook(bookID);
+    book->setIsBorrow(true);
+    book->setDateOfBorrow(GetCurrentDate());
+
+    std::cout << "Book borrowed successfully" << std::endl;
 }
 
+
 void Library::returnBook(int userID, int bookID) {
+    if (!books->get(bookID)->getIsBorrow()) {
+        std::cout << "Book is not borrowed" << std::endl;
+        return;
+    }
+
     users->get(userID)->returnBook(bookID);
+    books->get(bookID)->setIsBorrow(false);
+    books->get(bookID)->setDateOfBorrow("");
+}
+
+void Library::printBorrowedBooks(int userID) {
+    LinkedList<int> books = users->get(userID)->getBorrowedBooks();
+    for (int i = 0; i < books.getSize(); i++) {
+        std::cout << this->books->get(books.get(i))->getID() << " " << this->books->get(books.get(i))->getTitle() << std::endl;
+    }
 }
 
 #endif

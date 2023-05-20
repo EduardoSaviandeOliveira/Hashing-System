@@ -1,6 +1,8 @@
 #ifndef LIBRARY_HPP
 #define LIBRARY_HPP
 
+
+#include "../../Utils/Date/Date.hpp"
 #include "../../Utils/HashTable/HashTable.hpp"
 
 #include "../Author/Author.hpp"
@@ -42,7 +44,7 @@ class Library {
         void printUser(int id);
         void borrowBook(int userID, int bookID);
         void returnBook(int userID, int bookID);
-
+        void printBorrowedBooks(int userID);
 };
 
 #endif

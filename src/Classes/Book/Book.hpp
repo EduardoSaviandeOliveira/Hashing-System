@@ -16,7 +16,7 @@ class Book {
         std::string dateOfBorrow;
     public:
         Book();
-        Book(std::string title, int author, int publisher, std::string genre, bool isBorrow, std::string dateOfBorrow);
+        Book(std::string title, int author, int publisher, std::string genre, std::string dateOfBorrow);
 
         int getID();
         std::string getTitle();
