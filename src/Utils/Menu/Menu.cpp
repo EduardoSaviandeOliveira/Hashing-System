@@ -53,7 +53,7 @@ void Menu::run() {
 
     // system("clear");
 
-    library.printGenreBooks("2");
+    library.printPublisher(0);
 }
 
 #endif

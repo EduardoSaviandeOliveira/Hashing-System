@@ -9,11 +9,13 @@ int Publisher::nextId = 0;
 Publisher::Publisher() {
     this->id = Publisher::nextId++;
     this->name = "";
+    this->books = new LinkedList<int>();
 }
 
 Publisher::Publisher(std::string name) {
     this->id = Publisher::nextId++;
     this->name = name;
+    this->books = new LinkedList<int>();
 }
 
 int Publisher::getId() {

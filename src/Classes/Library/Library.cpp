@@ -67,9 +67,20 @@ void Library::printPublisher(int id) {
     }
 }
 
+void Library::printPublishers() {
+    for (int i = 0; i < publishers->getSize2(); i++) {
+        if(publishers->get(i) == nullptr) {
+            std::cout << "Publisher not found" << std::endl;
+            return;
+        } else {
+            std::cout << publishers->get(i)->getId() << " " << publishers->get(i)->getName() << std::endl;
+        }
+    }
+}
+
 void Library::addBook(Book book) {
     authors->get(book.getAuthor())->addBook(book.getID());
-    //publishers->get(book.getPublisher())->addBook(book.getID());
+    publishers->get(book.getPublisher())->addBook(book.getID());
     books->insert(book.getID(), book);
     std::cout << "Book added successfully" << std::endl;
 }
@@ -110,6 +121,17 @@ void Library::printBook(int id) {
     }
 }
 
+void Library::printBooks() {
+    for (int i = 0; i < books->getSize2(); i++) {
+        if(books->get(i) == nullptr) {
+            std::cout << "Book not found" << std::endl;
+            return;
+        } else {
+            std::cout << books->get(i)->getID() << " " << books->get(i)->getTitle() << std::endl;
+        }
+    }
+}
+
 void Library::addMagazine(Magazine magazine) {
     magazines->insert(magazine.getID(), magazine);
 }
@@ -133,6 +155,17 @@ void Library::printMagazine(int id) {
     std::cout << "Magazine Author: " << authors->get(magazines->get(id)->getAuthor())->getName() << std::endl;
     std::cout << "Magazine Publisher: " << publishers->get(magazines->get(id)->getPublisher())->getName() << std::endl;
     std::cout << "Magazine Genre: " << magazines->get(id)->getGenre() << std::endl;
+}
+
+void Library::printMagazines() {
+    for (int i = 0; i < magazines->getSize2(); i++) {
+        if(magazines->get(i) == nullptr) {
+            std::cout << "Magazine not found" << std::endl;
+            return;
+        } else {
+            std::cout << magazines->get(i)->getID() << " " << magazines->get(i)->getTitle() << std::endl;
+        }
+    }
 }
 
 void Library::addUser(User user) {
@@ -304,7 +337,7 @@ void Library::printGenreBooks(std::string genre) {
 }
 
 void Library::printGenreMagazines(std::string genre) {
-    for (int i = 0; i < magazines->getSize(); i++) {
+    for (int i = 0; i < magazines->getSize2(); i++) {
         if (magazines->get(i)->getGenre() == genre) {
             if(magazines->get(i) == nullptr) {
                 std::cout << "Magazine not found" << std::endl;

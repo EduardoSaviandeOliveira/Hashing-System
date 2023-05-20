@@ -29,14 +29,17 @@ class Library {
         void addPublisher(Publisher publisher);
         void removePublisher(int id);
         void printPublisher(int id);
+        void printPublishers();
 
         void addBook(Book book);
         void removeBook(int id);
         void printBook(int id);
+        void printBooks();
 
         void addMagazine(Magazine magazine);
         void removeMagazine(int id);
         void printMagazine(int id);
+        void printMagazines();
 
         void addUser(User user);
         void removeUser(int id);
