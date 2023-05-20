@@ -23,7 +23,7 @@ template <typename K, typename V>
 class HashTable {
     private:
         const int TABLE_SIZE = 10;
-        int size;
+        int size = 0;
         HashTableNode<K, V> **table;
     public:
         HashTable() {
@@ -31,17 +31,6 @@ class HashTable {
             for (int i = 0; i < TABLE_SIZE; i++) {
                 table[i] = nullptr;
             }
-        }
-        ~HashTable() {
-            for (int i = 0; i < TABLE_SIZE; i++) {
-                HashTableNode<K, V> *entry = table[i];
-                while (entry != nullptr) {
-                    HashTableNode<K, V> *prev = entry;
-                    entry = entry->next;
-                    delete prev;
-                }
-            }
-            delete[] table;
         }
 
         int getSize() {
@@ -71,6 +60,18 @@ class HashTable {
                 entry->value = value;
             }
             size++;
+        }
+
+        bool contains(K key) {
+            int hashValue = hash(key);
+            HashTableNode<K, V>* entry = table[hashValue];
+            while (entry != nullptr) {
+                if (entry->key == key) {
+                    return true;
+                }
+                entry = entry->next;
+            }
+            return false;
         }
 
         V* get(K key) {

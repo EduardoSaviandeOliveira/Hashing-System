@@ -61,4 +61,12 @@ std::string Magazine::getDateOfBorrow() {
     return dateOfBorrow;
 }
 
+void Magazine::setBorrowedBy(int borrowBy) {
+    this->borrowedBy = borrowBy;
+}
+
+int Magazine::getBorrowedBy() {
+    return borrowedBy;
+}
+
 #endif

@@ -133,6 +133,8 @@ void Library::printBooks() {
 }
 
 void Library::addMagazine(Magazine magazine) {
+    authors->get(magazine.getAuthor())->addBook(magazine.getID());
+    publishers->get(magazine.getPublisher())->addBook(magazine.getID());
     magazines->insert(magazine.getID(), magazine);
 }
 
@@ -142,19 +144,33 @@ void Library::removeMagazine(int id) {
         return;
     }
 
+    authors->get(magazines->get(id)->getAuthor())->removeBook(id);
+    publishers->get(magazines->get(id)->getPublisher())->removeBook(id);
+
+    if (magazines->get(id)->getIsBorrow()) {
+        users->get(magazines->get(id)->getBorrowedBy())->returnMagazine(id);
+    }
+
     magazines->remove(id);
 }
 
 void Library::printMagazine(int id) {
-    if(!magazines->get(id)) {
+    if (!magazines->get(id)) {
         std::cout << "Magazine not found" << std::endl;
         return;
     }
+
     std::cout << "Magazine ID: " << magazines->get(id)->getID() << std::endl;
     std::cout << "Magazine Title: " << magazines->get(id)->getTitle() << std::endl;
     std::cout << "Magazine Author: " << authors->get(magazines->get(id)->getAuthor())->getName() << std::endl;
     std::cout << "Magazine Publisher: " << publishers->get(magazines->get(id)->getPublisher())->getName() << std::endl;
     std::cout << "Magazine Genre: " << magazines->get(id)->getGenre() << std::endl;
+    if (magazines->get(id)->getIsBorrow()) {
+        std::cout << "Magazine is borrowed" << std::endl;
+        std::cout << "Magazine Date of Borrow: " << magazines->get(id)->getDateOfBorrow() << std::endl;
+    } else {
+        std::cout << "Magazine is not borrowed" << std::endl;
+    }
 }
 
 void Library::printMagazines() {
@@ -265,11 +281,25 @@ void Library::returnBook(int userID, int bookID) {
 
 
 void Library::printBorrowedBooks(int userID) {
-    LinkedList<int> books = users->get(userID)->getBorrowedBooks();
-    for (int i = 0; i < books.getSize() - 1; i++) {
-        std::cout << this->books->get(books.get(i))->getID() << " " << this->books->get(books.get(i))->getTitle() << " " << this->books->get(books.get(i))->getDateOfBorrow() << std::endl;
+    LinkedList<int> borrowedBooks = users->get(userID)->getBorrowedBooks();
+    std::cout << "Books: " << borrowedBooks.getSize() << std::endl;
+
+    if (borrowedBooks.getSize() == 0) {
+        std::cout << "No books borrowed" << std::endl;
+        return;
+    }
+
+    for (int i = 0; i < borrowedBooks.getSize(); i++) {
+        int bookID = borrowedBooks.get(i);
+        if (books->contains(bookID)) {
+            Book* book = books->get(bookID);
+            std::cout << book->getID() << " " << book->getTitle() << " " << book->getDateOfBorrow() << std::endl;
+        } else {
+            std::cout << "Invalid book ID: " << bookID << std::endl;
+        }
     }
 }
+
 
 void Library::borrowMagazine(int userID, int magazineID, std::string date) {
     User* user = users->get(userID);
@@ -337,12 +367,13 @@ void Library::printGenreBooks(std::string genre) {
 }
 
 void Library::printGenreMagazines(std::string genre) {
+    std::cout << "Magazines: " << magazines->getSize() << std::endl;
     for (int i = 0; i < magazines->getSize2(); i++) {
-        if (magazines->get(i)->getGenre() == genre) {
-            if(magazines->get(i) == nullptr) {
-                std::cout << "Magazine not found" << std::endl;
-                return;
-            } else {
+        if(magazines->get(i) == nullptr) {
+            std::cout << "Magazine not found" << std::endl;
+            return;
+        } else {
+            if(magazines->get(i)->getGenre() == genre) {
                 std::cout << magazines->get(i)->getID() << " " << magazines->get(i)->getTitle() << std::endl;
             }
         }

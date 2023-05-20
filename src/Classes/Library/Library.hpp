@@ -45,6 +45,7 @@ class Library {
         void removeUser(int id);
         void printUser(int id);
         void printBooksHistory(int id);
+        void printMagazinesHistory(int id);
 
         void borrowBook(int userID, int bookID, std::string date);
         void returnBook(int userID, int bookID);

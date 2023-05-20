@@ -14,6 +14,7 @@ private:
     std::string genre;
     bool isBorrow;
     std::string dateOfBorrow;
+    int borrowedBy;
 public:
     Magazine();
     Magazine(std::string title, int author, int publisher, std::string genre);
@@ -28,6 +29,8 @@ public:
     bool getIsBorrow();
     void setDateOfBorrow(std::string dateOfBorrow);
     std::string getDateOfBorrow();
+    void setBorrowedBy(int borrowBy);
+    int getBorrowedBy();
 };
 
 #endif

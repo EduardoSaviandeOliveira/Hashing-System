@@ -29,14 +29,6 @@ public:
         this->tail = nullptr;
         this->size = 0;
     }
-    ~LinkedList() {
-        LinkedListNode<T>* entry = head;
-        while (entry != nullptr) {
-            LinkedListNode<T>* prev = entry;
-            entry = entry->next;
-            delete prev;
-        }
-    }
 
     void insert(T data) {
         LinkedListNode<T>* entry = new LinkedListNode<T>(data);

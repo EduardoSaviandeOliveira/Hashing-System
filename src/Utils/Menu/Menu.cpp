@@ -44,16 +44,15 @@ void Menu::run() {
 
 
 
-    // User user1 = User("User 1");
+    User user1 = User("User 1");
+    library.addUser(user1);
 
-    // library.addUser(user1);
-
-    // library.borrowBook(user1.getID(), book1.getID(), "2020-10-09");
+    library.borrowBook(user1.getID(), book1.getID(), "2020-10-09");
     // // library.borrowBook(user1.getID(), book2.getID(), "2020-10-09");
 
-    // system("clear");
-
-    library.printPublisher(0);
+    library.printBorrowedBooks(user1.getID());
+    library.returnBook(user1.getID(), book1.getID());
+    library.printBorrowedBooks(user1.getID());
 }
 
 #endif
