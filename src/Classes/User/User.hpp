@@ -12,6 +12,9 @@ class User {
     int id;
     std::string name;
     LinkedList<int> borrowedBooks;
+    LinkedList<int> borrowedMagazines;
+    LinkedList<int> borrowedBooksHistory;
+    LinkedList<int> borrowedMagazinesHistory;
 
     public:
         User();
@@ -20,9 +23,14 @@ class User {
         int getID();
         std::string getName();
         LinkedList<int> getBorrowedBooks();
+        LinkedList<int> getBorrowedMagazines();
+        LinkedList<int> getBorrowedBooksHistory();
+        LinkedList<int> getBorrowedMagazinesHistory();
 
         void borrowBook(int bookID);
         void returnBook(int bookID);
+        void borrowMagazine(int magazineID);
+        void returnMagazine(int magazineID);
 };
 
 #endif

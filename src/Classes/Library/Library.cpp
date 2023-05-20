@@ -11,29 +11,6 @@ Library::Library() {
     magazines = new HashTable<int, Magazine>();
 }
 
-Library::~Library() {
-    if (users != nullptr) {
-        delete users;
-        users = nullptr;
-    }
-    if (authors != nullptr) {
-        delete authors;
-        authors = nullptr;
-    }
-    if (publishers != nullptr) {
-        delete publishers;
-        publishers = nullptr;
-    }
-    if (books != nullptr) {
-        delete books;
-        books = nullptr;
-    }
-    if (magazines != nullptr) {
-        delete magazines;
-        magazines = nullptr;
-    }
-}
-
 void Library::addAuthor(Author author) {
     authors->insert(author.getId(), author);
 }
@@ -120,11 +97,7 @@ void Library::printUser(int id) {
         std::cout << this->books->get(books.get(i))->getTitle() << std::endl;
     }
 }
-
-// verificar se user tem algum livro em atraso
-// set date to current date
-
-void Library::borrowBook(int userID, int bookID) {
+void Library::borrowBook(int userID, int bookID, std::string date) {
     User* user = users->get(userID);
     if (!user) {
         std::cout << "User not found" << std::endl;
@@ -142,10 +115,14 @@ void Library::borrowBook(int userID, int bookID) {
         return;
     }
 
+    if (IsValidDate(date) == false) {
+        std::cout << "Invalid date" << std::endl;
+        return;
+    }
+
     user->borrowBook(bookID);
     book->setIsBorrow(true);
-    book->setDateOfBorrow(GetCurrentDate());
-
+    book->setDateOfBorrow(date);
     std::cout << "Book borrowed successfully" << std::endl;
 }
 
@@ -164,7 +141,58 @@ void Library::returnBook(int userID, int bookID) {
 void Library::printBorrowedBooks(int userID) {
     LinkedList<int> books = users->get(userID)->getBorrowedBooks();
     for (int i = 0; i < books.getSize(); i++) {
-        std::cout << this->books->get(books.get(i))->getID() << " " << this->books->get(books.get(i))->getTitle() << std::endl;
+        std::cout << this->books->get(books.get(i))->getID() << " " << this->books->get(books.get(i))->getTitle() << " " << this->books->get(books.get(i))->getDateOfBorrow() << std::endl;
+    }
+}
+
+void Library::borrowMagazine(int userID, int magazineID, std::string date) {
+    User* user = users->get(userID);
+    if (!user) {
+        std::cout << "User not found" << std::endl;
+        return;
+    }
+
+    Magazine* magazine = magazines->get(magazineID);
+    if (!magazine) {
+        std::cout << "Magazine not found" << std::endl;
+        return;
+    }
+
+    if (magazine->getIsBorrow()) {
+        std::cout << "Magazine is already borrowed" << std::endl;
+        return;
+    }
+
+    if (IsValidDate(date) == false) {
+        std::cout << "Invalid date" << std::endl;
+        return;
+    }
+
+    user->borrowMagazine(magazineID);
+    magazine->setIsBorrow(true);
+    magazine->setDateOfBorrow(date);
+    std::cout << "Magazine borrowed successfully" << std::endl;
+}
+
+void Library::returnMagazine(int userID, int magazineID) {
+    if (!magazines->get(magazineID)->getIsBorrow()) {
+        std::cout << "Magazine is not borrowed" << std::endl;
+        return;
+    }
+
+    users->get(userID)->returnMagazine(magazineID);
+    magazines->get(magazineID)->setIsBorrow(false);//verify date
+    if (magazines->get(magazineID)->getDateOfBorrow() == "") {
+        std::cout << "Magazine is not borrowed" << std::endl;
+        return;
+    }
+    magazines->get(magazineID)->setDateOfBorrow("");
+}
+
+void Library::printBorrowedMagazines(int userID) {
+    LinkedList<int> magazines = users->get(userID)->getBorrowedMagazines();
+    for (int i = 0; i < magazines.getSize(); i++) {
+        std::cout << this->magazines->get(magazines.get(i))->getID() << " " << this->magazines->get(magazines.get(i))->getTitle() << " " << this->magazines->get(magazines.get(i))->getDateOfBorrow() << std::endl;
     }
 }
 

@@ -35,10 +35,10 @@ void Menu::run() {
     library.addUser(user1);
     library.addUser(user2);
 
-    library.borrowBook(user1.getID(), book1.getID());
-    library.borrowBook(user1.getID(), book2.getID());
+    library.borrowBook(user1.getID(), book1.getID(), "2020-10-09");
+    library.borrowBook(user1.getID(), book2.getID(), "2020-10-09");
 
-    //library.printBorrowedBooks(user1.getID());
+    library.printBorrowedBooks(user1.getID());
 
 
 }

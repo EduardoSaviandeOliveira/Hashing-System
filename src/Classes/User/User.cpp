@@ -9,12 +9,18 @@ User::User() {
     this->id = nextID++;
     name = "";
     this->borrowedBooks = LinkedList<int>();
+    this->borrowedMagazines = LinkedList<int>();
+    this->borrowedBooksHistory = LinkedList<int>();
+    this->borrowedMagazinesHistory = LinkedList<int>();
 }
 
 User::User(std::string name) {
     this->id = nextID++;
     this->name = name;
     this->borrowedBooks = LinkedList<int>();
+    this->borrowedMagazines = LinkedList<int>();
+    this->borrowedBooksHistory = LinkedList<int>();
+    this->borrowedMagazinesHistory = LinkedList<int>();
 }
 
 int User::getID() {
@@ -35,6 +41,14 @@ void User::borrowBook(int bookID) {
 
 void User::returnBook(int bookID) {
     borrowedBooks.remove(bookID);
+}
+
+void User::borrowMagazine(int magazineID) {
+    borrowedMagazines.insert(magazineID);
+}
+
+void User::returnMagazine(int magazineID) {
+    borrowedMagazines.remove(magazineID);
 }
 
 #endif

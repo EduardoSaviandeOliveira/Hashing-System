@@ -21,7 +21,6 @@ class Library {
 
     public:
         Library();
-        ~Library();
 
         void addAuthor(Author author);
         void removeAuthor(int id);
@@ -42,9 +41,14 @@ class Library {
         void addUser(User user);
         void removeUser(int id);
         void printUser(int id);
-        void borrowBook(int userID, int bookID);
+
+        void borrowBook(int userID, int bookID, std::string date);
         void returnBook(int userID, int bookID);
         void printBorrowedBooks(int userID);
+
+        void borrowMagazine(int userID, int magazineID, std::string date);
+        void returnMagazine(int userID, int magazineID);
+        void printBorrowedMagazines(int userID);
 };
 
 #endif
