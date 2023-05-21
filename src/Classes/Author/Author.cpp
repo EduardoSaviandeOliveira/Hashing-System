@@ -23,12 +23,20 @@ Author::Author(std::string name) {
     this->books = new LinkedList<int>();
 }
 
+Author::~Author() {
+    nextId--;
+}
+
 int Author::getId() {
     return this->id;
 }
 
 std::string Author::getName() {
     return name;
+}
+
+void Author::setName(std::string name) {
+    this->name = name;
 }
 
 LinkedList<int>* Author::getBooks() {

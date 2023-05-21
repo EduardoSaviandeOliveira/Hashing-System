@@ -34,16 +34,19 @@ class Library {
         void addBook(Book book);
         void removeBook(int id);
         void printBook(int id);
+        void printBooksByName(std::string name);
         void printBooks();
 
         void addMagazine(Magazine magazine);
         void removeMagazine(int id);
         void printMagazine(int id);
         void printMagazines();
+        void printMagazinesByName(std::string name);
 
         void addUser(User user);
         void removeUser(int id);
         void printUser(int id);
+        void printUser(std::string name);
         void printBooksHistory(int id);
         void printMagazinesHistory(int id);
 

@@ -12,60 +12,301 @@ void Menu::mainMenu() {
 
     std::cout << "Welcome " << name << "!" << std::endl;
     std::cout << "1. Enter application" << std::endl;
+    std::cout << "2. Exit application" << std::endl;
+    std::cout << "Option: ";
+    std::cin >> option;
+
+    if (option == "1") {
+        std::cout << "Entering application..." << std::endl;
+        this->run();
+    } else if (option == "2") {
+        std::cout << "Exiting application..." << std::endl;
+    } else {
+        std::cout << "Invalid option" << std::endl;
+    }
 }
-
-
 
 void Menu::run() {
     Library library = Library();
+    std::string option = "";
 
-    Author author1 = Author("Author 1");
+    while(option != "0")  {
+        std::cout << "1. Register book" << std::endl;
+        std::cout << "2. Register magazine" << std::endl;
+        std::cout << "3. Register author" << std::endl;
+        std::cout << "4. Register publisher" << std::endl;
+        std::cout << "5. Register user" << std::endl;
 
-    Publisher publisher1 = Publisher("Publisher 1");
+        std::cout << "6. Alter book" << std::endl;
+        std::cout << "7. Alter magazine" << std::endl;
+        std::cout << "8. Alter author" << std::endl;
+        std::cout << "9. Alter publisher" << std::endl;
 
-    library.addAuthor(author1);
+        std::cout << "10.Borrow book" << std::endl;
+        std::cout << "11.Borrow magazine" << std::endl;
+        std::cout << "12.Return book" << std::endl;
+        std::cout << "13.Return magazine" << std::endl;
 
-    library.addPublisher(publisher1);
+        std::cout << "14.Print publisher" << std::endl;
+        std::cout << "15.Print author" << std::endl;
+        std::cout << "16.Print book" << std::endl;
+        std::cout << "17.Print magazine" << std::endl;
+        std::cout << "18.Print late books" << std::endl;
+        std::cout << "19.Print late magazines" << std::endl;
+        std::cout << "20.Print book by name" << std::endl;
+        std::cout << "21.Print magazine by name" << std::endl;
+        std::cout << "22.Print books by genre" << std::endl;
+        std::cout << "23.Print magazines by genre" << std::endl;
+        std::cout << "24.Print user by name" << std::endl;
 
-    Book book1 = Book("Book 1", author1.getId(), publisher1.getId(), "2", "1");
-    Book book2 = Book("Book 2", author1.getId(), publisher1.getId(), "2", "2");
-    Book book3 = Book("Book 3", author1.getId(), publisher1.getId(), "2", "3");
-    Book book4 = Book("Book 4", author1.getId(), publisher1.getId(), "2", "4");
-    Book book5 = Book("Book 5", author1.getId(), publisher1.getId(), "2", "5");
-    Book book6 = Book("Book 6", author1.getId(), publisher1.getId(), "2", "6");
-    Book book7 = Book("Book 7", author1.getId(), publisher1.getId(), "2", "7");
-    Book book8 = Book("Book 8", author1.getId(), publisher1.getId(), "2", "8");
-    Book book9 = Book("Book 9", author1.getId(), publisher1.getId(), "2", "9");
-    Book book10 = Book("Book 10", author1.getId(), publisher1.getId(), "2", "10");
-    Book book11 = Book("Book 11", author1.getId(), publisher1.getId(), "2", "11");
-    Book book12 = Book("Book 12", author1.getId(), publisher1.getId(), "2", "12");
-    Book book13 = Book("Book 13", author1.getId(), publisher1.getId(), "2", "13");
+        std::cin >> option;
 
-    library.addBook(book1);
-    library.addBook(book2);
-    library.addBook(book3);
-    library.addBook(book4);
-    library.addBook(book5);
-    library.addBook(book6);
-    library.addBook(book7);
-    library.addBook(book8);
-    library.addBook(book9);
-    library.addBook(book10);
-    library.addBook(book11);
-    library.addBook(book12);
-    library.addBook(book13);
+        if(option == "1") {
+            std::string title;
+            int author;
+            int publisher;
+            std::string genre;
 
+            std::cout << "Title: ";
+            std::cin >> title;
+            std::cout << "Author: ";
+            std::cin >> author;
+            std::cout << "Publisher: ";
+            std::cin >> publisher;
+            std::cout << "Genre: ";
+            std::cin >> genre;
 
+            Book book = Book(title, author, publisher, genre);
+            library.addBook(book);
+        } else if(option == "2") {
+            std::string title;
+            int author;
+            int publisher;
+            std::string genre;
 
-    User user1 = User("User 1");
-    library.addUser(user1);
+            std::cout << "Title: ";
+            std::cin >> title;
+            std::cout << "Author: ";
+            std::cin >> author;
+            std::cout << "Publisher: ";
+            std::cin >> publisher;
+            std::cout << "Genre: ";
+            std::cin >> genre;
 
-    library.borrowBook(user1.getID(), book1.getID(), "2020-10-09");
-    // // library.borrowBook(user1.getID(), book2.getID(), "2020-10-09");
+            Magazine magazine = Magazine(title, author, publisher, genre);
+            library.addMagazine(magazine);
+        } else if(option == "3") {
+            std::string name;
 
-    library.printBorrowedBooks(user1.getID());
-    library.returnBook(user1.getID(), book1.getID());
-    library.printBorrowedBooks(user1.getID());
+            std::cout << "Name: ";
+            std::cin >> name;
+
+            Author author = Author(name);
+            library.addAuthor(author);
+        } else if(option == "4") {
+            std::string name;
+
+            std::cout << "Name: ";
+            std::cin >> name;
+
+            Publisher publisher = Publisher(name);
+            library.addPublisher(publisher);
+        } else if(option == "5") {
+            std::string name;
+
+            std::cout << "Name: ";
+            std::cin >> name;
+
+            User user = User(name);
+            library.addUser(user);
+        } else if(option == "6") {
+            int id;
+            std::string title;
+            int author;
+            int publisher;
+            std::string genre;
+
+            std::cout << "ID: ";
+            std::cin >> id;
+            std::cout << "Title: ";
+            std::cin >> title;
+            std::cout << "Author: ";
+            std::cin >> author;
+            std::cout << "Publisher: ";
+            std::cin >> publisher;
+            std::cout << "Genre: ";
+            std::cin >> genre;
+
+            Book book = Book(title, author, publisher, genre);
+            library.removeBook(id);
+            library.addBook(book);
+        } else if(option == "7") {
+            int id;
+            std::string title;
+            int author;
+            int publisher;
+            std::string genre;
+
+            std::cout << "ID: ";
+            std::cin >> id;
+            std::cout << "Title: ";
+            std::cin >> title;
+            std::cout << "Author: ";
+            std::cin >> author;
+            std::cout << "Publisher: ";
+            std::cin >> publisher;
+            std::cout << "Genre: ";
+            std::cin >> genre;
+
+            Magazine magazine = Magazine(title, author, publisher, genre);
+            library.removeMagazine(id);
+            library.addMagazine(magazine);
+        } else if(option == "8") {
+            int id;
+            std::string name;
+
+            std::cout << "ID: ";
+            std::cin >> id;
+            std::cout << "Name: ";
+            std::cin >> name;
+
+            Author author = Author(name);
+            library.removeAuthor(id);
+            library.addAuthor(author);
+        } else if(option == "9") {
+            int id;
+            std::string name;
+
+            std::cout << "ID: ";
+            std::cin >> id;
+            std::cout << "Name: ";
+            std::cin >> name;
+
+            Publisher publisher = Publisher(name);
+            library.removePublisher(id);
+            library.addPublisher(publisher);
+        } else if(option == "10") {
+            int userID;
+            int bookID;
+            std::string date;
+
+            std::cout << "User ID: ";
+            std::cin >> userID;
+            std::cout << "Book ID: ";
+            std::cin >> bookID;
+            std::cout << "Date: ";
+            std::cin >> date;
+
+            library.borrowBook(userID, bookID, date);
+        } else if(option == "11") {
+            int userID;
+            int magazineID;
+            std::string date;
+
+            std::cout << "User ID: ";
+            std::cin >> userID;
+            std::cout << "Magazine ID: ";
+            std::cin >> magazineID;
+            std::cout << "Date: ";
+            std::cin >> date;
+
+            library.borrowMagazine(userID, magazineID, date);
+        } else if(option == "12") {
+            int userID;
+            int bookID;
+
+            std::cout << "User ID: ";
+            std::cin >> userID;
+            std::cout << "Book ID: ";
+            std::cin >> bookID;
+
+            library.returnBook(userID, bookID);
+        } else if(option == "13") {
+            int userID;
+            int magazineID;
+
+            std::cout << "User ID: ";
+            std::cin >> userID;
+            std::cout << "Magazine ID: ";
+            std::cin >> magazineID;
+
+            library.returnMagazine(userID, magazineID);
+        } else if(option == "14") {
+            int id;
+
+            std::cout << "ID: ";
+            std::cin >> id;
+
+            library.printPublisher(id);
+        } else if(option == "15") {
+            int id;
+
+            std::cout << "ID: ";
+            std::cin >> id;
+
+            library.printAuthor(id);
+        } else if(option == "16") {
+            int id;
+
+            std::cout << "ID: ";
+            std::cin >> id;
+
+            library.printBook(id);
+        } else if(option == "17") {
+            int id;
+
+            std::cout << "ID: ";
+            std::cin >> id;
+
+            library.printMagazine(id);
+        } else if(option == "18") {
+            int id;
+            std::cout << "User ID: ";
+            std::cin >> id;
+            library.printBorrowedBooks(id);
+        } else if(option == "19") {
+            int id;
+            std::cin >> id;
+
+            library.printBorrowedMagazines(id);
+        } else if(option == "20") {
+            std::string name;
+
+            std::cout << "Name: ";
+            std::cin >> name;
+
+            library.printBooksByName(name);
+        } else if(option == "21") {
+            std::string name;
+
+            std::cout << "Name: ";
+            std::cin >> name;
+
+            library.printMagazinesByName(name);
+        } else if(option == "22") {
+            std::string genre;
+
+            std::cout << "Genre: ";
+            std::cin >> genre;
+
+            library.printGenreBooks(genre);
+        } else if(option == "23") {
+            std::string genre;
+
+            std::cout << "Genre: ";
+            std::cin >> genre;
+
+            library.printGenreMagazines(genre);
+        } else if(option == "24") {
+            std::string name;
+
+            std::cout << "Name: ";
+            std::cin >> name;
+
+            library.printUser(name);
+        } else {
+            std::cout << "Invalid option" << std::endl;
+        }
+    }
 }
-
 #endif

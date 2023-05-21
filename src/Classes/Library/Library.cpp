@@ -121,6 +121,20 @@ void Library::printBook(int id) {
     }
 }
 
+void Library::printBooksByName(std::string name) {
+    std::cout << "Books: " << books->getSize() << std::endl;
+    for (int i = 0; i < books->getSize2(); i++) {
+        if(books->get(i) == nullptr) {
+            std::cout << "Book not found" << std::endl;
+            return;
+        } else {
+            if(books->get(i)->getTitle() == name) {
+                std::cout << books->get(i)->getID() << " " << books->get(i)->getTitle() << std::endl;
+            }
+        }
+    }
+}
+
 void Library::printBooks() {
     for (int i = 0; i < books->getSize2(); i++) {
         if(books->get(i) == nullptr) {
@@ -184,6 +198,20 @@ void Library::printMagazines() {
     }
 }
 
+void Library::printMagazinesByName(std::string name) {
+    std::cout << "Magazines: " << magazines->getSize() << std::endl;
+    for (int i = 0; i < magazines->getSize2(); i++) {
+        if(magazines->get(i) == nullptr) {
+            std::cout << "Magazine not found" << std::endl;
+            return;
+        } else {
+            if(magazines->get(i)->getTitle() == name) {
+                std::cout << magazines->get(i)->getID() << " " << magazines->get(i)->getTitle() << std::endl;
+            }
+        }
+    }
+}
+
 void Library::addUser(User user) {
     users->insert(user.getID(), user);
 }
@@ -212,6 +240,19 @@ void Library::printUser(int id) {
     }
 }
 
+void Library::printUser(std::string name) {
+    for (int i = 0; i < users->getSize2(); i++) {
+        if(users->get(i) == nullptr) {
+            std::cout << "User not found" << std::endl;
+            return;
+        } else {
+            if(users->get(i)->getName() == name) {
+                std::cout << users->get(i)->getID() << " " << users->get(i)->getName() << std::endl;
+            }
+        }
+    }
+}
+
 void Library::printBooksHistory(int id) {
     if(!users->get(id)) {
         std::cout << "User not found" << std::endl;
@@ -224,6 +265,21 @@ void Library::printBooksHistory(int id) {
     LinkedList<int> books = users->get(id)->getBorrowedBooksHistory();
     for(int i = 0; i < books.getSize() - 1; i++) {
         std::cout << this->books->get(books.get(i))->getTitle() << std::endl;
+    }
+}
+
+void Library::printMagazinesHistory(int id) {
+    if(!users->get(id)) {
+        std::cout << "User not found" << std::endl;
+        return;
+    }
+
+    std::cout << "User ID: " << users->get(id)->getID() << std::endl;
+    std::cout << "User Name: " << users->get(id)->getName() << std::endl;
+    std::cout << "User Magazines History: " << std::endl;
+    LinkedList<int> magazines = users->get(id)->getBorrowedMagazinesHistory();
+    for(int i = 0; i < magazines.getSize() - 1; i++) {
+        std::cout << this->magazines->get(magazines.get(i))->getTitle() << std::endl;
     }
 }
 

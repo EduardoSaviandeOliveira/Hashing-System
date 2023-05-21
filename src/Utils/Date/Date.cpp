@@ -51,8 +51,13 @@ bool IsLate(std::string date) {
     if (yearInt == currentYearInt && monthInt == currentMonthInt && dayInt < currentDayInt)
         return true;
 
+    int daysDifference = (currentYearInt - yearInt) * 365 + (currentMonthInt - monthInt) * 30 + (currentDayInt - dayInt);
+    if (daysDifference >= 7)
+        return true;
+
     return false;
 }
+
 
 bool IsValidDate(std::string date) {
     if (date.length() != 10)

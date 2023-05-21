@@ -19,7 +19,7 @@ Book::Book() {
     this->dateOfBorrow = "";
 }
 
-Book::Book(std::string title, int author, int publisher, std::string genre, std::string dateOfBorrow) {
+Book::Book(std::string title, int author, int publisher, std::string genre) {
     if (nextID == 100000) {
         throw "Error: nextID is 100000";
     }
@@ -30,7 +30,11 @@ Book::Book(std::string title, int author, int publisher, std::string genre, std:
     this->borrowedBy = 0;
     this->genre = genre;
     this->isBorrow = false;
-    this->dateOfBorrow = dateOfBorrow;
+    this->dateOfBorrow = "0";
+}
+
+Book::~Book() {
+    nextID--;
 }
 
 int Book::getID() {
@@ -47,6 +51,10 @@ int Book::getAuthor() {
 
 int Book::getPublisher() {
     return publisher;
+}
+
+void Book::setTitle(std::string title) {
+    this->title = title;
 }
 
 std::string Book::getGenre() {

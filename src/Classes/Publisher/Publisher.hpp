@@ -13,11 +13,13 @@ class Publisher {
     public:
         Publisher();
         Publisher(std::string name);
+        ~Publisher();
 
         int getId();
         std::string getName();
         LinkedList<int>* getBooks();
 
+        void setName(std::string name);
         void addBook(int id);
         void removeBook(int id);
 };

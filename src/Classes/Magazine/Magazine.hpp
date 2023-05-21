@@ -18,6 +18,7 @@ private:
 public:
     Magazine();
     Magazine(std::string title, int author, int publisher, std::string genre);
+    ~Magazine();
 
     int getID();
     std::string getTitle();
@@ -25,6 +26,7 @@ public:
     int getPublisher();
     std::string getGenre();
 
+    void setTitle(std::string title);
     void setIsBorrow(bool isBorrow);
     bool getIsBorrow();
     void setDateOfBorrow(std::string dateOfBorrow);

@@ -15,9 +15,10 @@ class Author {
     public:
         Author();
         Author(std::string name);
-
+        ~Author();
         int getId();
         std::string getName();
+        void setName(std::string name);
         LinkedList<int>* getBooks();
 
         void addBook(int id);

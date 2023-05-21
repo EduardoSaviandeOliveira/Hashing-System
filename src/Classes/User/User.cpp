@@ -37,6 +37,10 @@ int User::getID() {
     return id;
 }
 
+void User::setName(std::string name) {
+    this->name = name;
+}
+
 std::string User::getName() {
     return name;
 }

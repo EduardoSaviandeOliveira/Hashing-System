@@ -25,6 +25,10 @@ Publisher::Publisher(std::string name) {
     this->books = new LinkedList<int>();
 }
 
+Publisher::~Publisher() {
+    nextId--;
+}
+
 int Publisher::getId() {
     return this->id;
 }
@@ -35,6 +39,10 @@ std::string Publisher::getName() {
 
 LinkedList<int>* Publisher::getBooks() {
     return books;
+}
+
+void Publisher::setName(std::string name) {
+    this->name = name;
 }
 
 void Publisher::addBook(int id) {

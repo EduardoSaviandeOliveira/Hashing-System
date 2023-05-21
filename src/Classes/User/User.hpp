@@ -27,7 +27,7 @@ class User {
         LinkedList<int> getBorrowedMagazines();
         LinkedList<int> getBorrowedBooksHistory();
         LinkedList<int> getBorrowedMagazinesHistory();
-
+        void setName(std::string name);
         void borrowBook(int bookID);
         void returnBook(int bookID);
         void borrowMagazine(int magazineID);

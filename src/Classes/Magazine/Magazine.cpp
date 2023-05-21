@@ -31,6 +31,10 @@ Magazine::Magazine(std::string title, int author, int publisher, std::string gen
     this->dateOfBorrow = "";
 }
 
+Magazine::~Magazine() {
+    nextID--;
+}
+
 int Magazine::getID() {
     return id;
 }
@@ -49,6 +53,10 @@ int Magazine::getPublisher() {
 
 std::string Magazine::getGenre() {
     return genre;
+}
+
+void Magazine::setTitle(std::string title) {
+    this->title = title;
 }
 
 void Magazine::setIsBorrow(bool isAvailable) {
