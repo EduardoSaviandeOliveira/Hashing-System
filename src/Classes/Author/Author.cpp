@@ -12,6 +12,7 @@ Author::Author() {
     this->id = Author::nextId++;
     this->name = "";
     this->books = new LinkedList<int>();
+    this->magazines = new LinkedList<int>();
 }
 
 Author::Author(std::string name) {
@@ -21,6 +22,7 @@ Author::Author(std::string name) {
     this->id = Author::nextId++;
     this->name = name;
     this->books = new LinkedList<int>();
+    this->magazines = new LinkedList<int>();
 }
 
 Author::~Author() {
@@ -43,12 +45,24 @@ LinkedList<int>* Author::getBooks() {
     return books;
 }
 
+LinkedList<int>* Author::getMagazines() {
+    return magazines;
+}
+
 void Author::addBook(int id) {
     this->books->insert(id);
 }
 
 void Author::removeBook(int id) {
     this->books->remove(id);
+}
+
+void Author::addMagazine(int id) {
+    this->magazines->insert(id);
+}
+
+void Author::removeMagazine(int id) {
+    this->magazines->remove(id);
 }
 
 #endif

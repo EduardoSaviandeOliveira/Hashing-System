@@ -14,6 +14,7 @@ Publisher::Publisher() {
     this->id = Publisher::nextId++;
     this->name = "";
     this->books = new LinkedList<int>();
+    this->magazines = new LinkedList<int>();
 }
 
 Publisher::Publisher(std::string name) {
@@ -23,6 +24,7 @@ Publisher::Publisher(std::string name) {
     this->id = Publisher::nextId++;
     this->name = name;
     this->books = new LinkedList<int>();
+    this->magazines = new LinkedList<int>();
 }
 
 Publisher::~Publisher() {
@@ -52,5 +54,14 @@ void Publisher::addBook(int id) {
 void Publisher::removeBook(int id) {
     books->remove(id);
 }
+
+void Publisher::addMagazine(int id) {
+    magazines->insert(id);
+}
+
+void Publisher::removeMagazine(int id) {
+    magazines->remove(id);
+}
+
 
 #endif

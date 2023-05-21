@@ -12,6 +12,7 @@ class Author {
         int id;
         std::string name;
         LinkedList<int> *books;
+        LinkedList<int> *magazines;
     public:
         Author();
         Author(std::string name);
@@ -20,9 +21,13 @@ class Author {
         std::string getName();
         void setName(std::string name);
         LinkedList<int>* getBooks();
+        LinkedList<int>* getMagazines();
 
         void addBook(int id);
         void removeBook(int id);
+
+        void addMagazine(int id);
+        void removeMagazine(int id);
 };
 
 #endif

@@ -10,6 +10,7 @@ class Publisher {
         int id;
         std::string name;
         LinkedList<int> *books;
+        LinkedList<int> *magazines;
     public:
         Publisher();
         Publisher(std::string name);
@@ -18,10 +19,13 @@ class Publisher {
         int getId();
         std::string getName();
         LinkedList<int>* getBooks();
+        LinkedList<int>* getMagazines();
 
         void setName(std::string name);
         void addBook(int id);
         void removeBook(int id);
+        void addMagazine(int id);
+        void removeMagazine(int id);
 };
 
 #endif
