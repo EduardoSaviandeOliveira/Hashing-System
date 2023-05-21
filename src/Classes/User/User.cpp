@@ -6,6 +6,9 @@
 int User::nextID = 0;
 
 User::User() {
+    if (nextID == 100000) {
+        throw "Error: nextID is 100000";
+    }
     this->id = nextID++;
     name = "";
     this->borrowedBooks = LinkedList<int>();
@@ -15,12 +18,19 @@ User::User() {
 }
 
 User::User(std::string name) {
+    if (nextID == 100000) {
+        throw "Error: nextID is 100000";
+    }
     this->id = nextID++;
     this->name = name;
     this->borrowedBooks = LinkedList<int>();
     this->borrowedMagazines = LinkedList<int>();
     this->borrowedBooksHistory = LinkedList<int>();
     this->borrowedMagazinesHistory = LinkedList<int>();
+}
+
+User::~User() {
+    nextID--;
 }
 
 int User::getID() {

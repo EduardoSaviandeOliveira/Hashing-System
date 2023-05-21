@@ -7,12 +7,19 @@
 int Publisher::nextId = 0;
 
 Publisher::Publisher() {
+    if (nextId == 100000) {
+        throw "Error: nextID is 100000";
+    }
+
     this->id = Publisher::nextId++;
     this->name = "";
     this->books = new LinkedList<int>();
 }
 
 Publisher::Publisher(std::string name) {
+    if (nextId == 100000) {
+        throw "Error: nextID is 100000";
+    }
     this->id = Publisher::nextId++;
     this->name = name;
     this->books = new LinkedList<int>();

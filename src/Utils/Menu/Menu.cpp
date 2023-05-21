@@ -3,6 +3,19 @@
 
 #include "Menu.hpp"
 
+#include <iostream>
+#include <string>
+
+void Menu::mainMenu() {
+    std::string name = "Mario Mario";
+    std::string option = "";
+
+    std::cout << "Welcome " << name << "!" << std::endl;
+    std::cout << "1. Enter application" << std::endl;
+}
+
+
+
 void Menu::run() {
     Library library = Library();
 

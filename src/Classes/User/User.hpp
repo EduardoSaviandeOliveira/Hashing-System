@@ -19,6 +19,7 @@ class User {
     public:
         User();
         User(std::string name);
+        ~User();
 
         int getID();
         std::string getName();

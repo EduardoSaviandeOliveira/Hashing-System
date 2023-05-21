@@ -6,12 +6,18 @@
 int Author::nextId = 0;
 
 Author::Author() {
+    if (nextId == 100000) {
+        throw "Error: nextID is 100000";
+    }
     this->id = Author::nextId++;
     this->name = "";
     this->books = new LinkedList<int>();
 }
 
 Author::Author(std::string name) {
+    if (nextId == 100000) {
+        throw "Error: nextID is 100000";
+    }
     this->id = Author::nextId++;
     this->name = name;
     this->books = new LinkedList<int>();

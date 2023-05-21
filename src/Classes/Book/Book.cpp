@@ -6,6 +6,9 @@
 int Book::nextID = 0;
 
 Book::Book() {
+    if (nextID == 100000) {
+        throw "Error: nextID is 100000";
+    }
     this->id = nextID++;
     this->title = "";
     this->author = 0;
@@ -17,6 +20,9 @@ Book::Book() {
 }
 
 Book::Book(std::string title, int author, int publisher, std::string genre, std::string dateOfBorrow) {
+    if (nextID == 100000) {
+        throw "Error: nextID is 100000";
+    }
     id = nextID++;
     this->title = title;
     this->author = author;

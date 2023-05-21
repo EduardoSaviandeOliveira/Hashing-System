@@ -6,6 +6,9 @@
 int Magazine::nextID = 0;
 
 Magazine::Magazine() {
+    if (nextID == 100000) {
+        throw "Error: nextID is 100000";
+    }
     this->id = nextID++;
     std::string title = "";
     this->author = 0;
@@ -16,6 +19,9 @@ Magazine::Magazine() {
 }
 
 Magazine::Magazine(std::string title, int author, int publisher, std::string genre) {
+    if (nextID == 100000) {
+        throw "Error: nextID is 100000";
+    }
     this->id = nextID++;
     this->title = title;
     this->author = author;
